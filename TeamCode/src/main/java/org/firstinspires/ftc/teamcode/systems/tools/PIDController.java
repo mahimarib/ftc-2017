@@ -35,6 +35,8 @@ public class PIDController {
 
     private double setpointRange=0;
 
+    private double time = 0.2;
+
     //**********************************
     // Constructor functions
     //**********************************
@@ -204,8 +206,8 @@ public class PIDController {
      * @param minimum possible output value
      * @param maximum possible output value
      */
-    public void setOutputLimits(double minimum,double maximum){
-        if(maximum<minimum)return;
+    public double setOutputLimits(double minimum, double maximum){
+        if(maximum<minimum) return minimum;
         maxOutput=maximum;
         minOutput=minimum;
 
@@ -213,13 +215,14 @@ public class PIDController {
         if(maxIOutput==0 || maxIOutput>(maximum-minimum) ){
             setMaxIOutput(maximum-minimum);
         }
+        return minimum;
     }
 
     /**
      * Set the operating direction of the PID controller
      * @param reversed Set true to reverse PID output
      */
-    public void  setDirection(boolean reversed){
+    public void setDirection(boolean reversed){
         this.reversed=reversed;
     }
 

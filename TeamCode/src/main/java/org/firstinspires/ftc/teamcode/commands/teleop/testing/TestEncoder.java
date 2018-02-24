@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.commands.teleop.testing;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
@@ -9,6 +10,7 @@ import org.firstinspires.ftc.teamcode.systems.tools.Direction;
 /**
  * Created by Mahim on 1/9/18.
  */
+@Disabled
 @TeleOp(name = "testing encoders", group = "testing")
 public class TestEncoder extends OpMode {
     private MecanumDriveSystem mecanumDrive;

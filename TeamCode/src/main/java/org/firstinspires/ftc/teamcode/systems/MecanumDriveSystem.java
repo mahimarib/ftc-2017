@@ -5,6 +5,7 @@ import com.qualcomm.hardware.bosch.JustLoggingAccelerationIntegrator;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.PIDCoefficients;
 
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
@@ -12,6 +13,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
 import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 import org.firstinspires.ftc.teamcode.systems.tools.Direction;
 import org.firstinspires.ftc.teamcode.systems.tools.DriveSystem;
+import org.firstinspires.ftc.teamcode.systems.tools.PIDController;
 
 
 /**
@@ -24,15 +26,23 @@ public class MecanumDriveSystem {
     private DcMotor                     frontRightMotor;
     private DcMotor                     rearRightMotor;
     private BNO055IMU                   imu;
+    private double                      p = 0.1,
+                                        i = 0.0,
+                                        d = 0.0,
+                                        setpoint,
+                                        range = 2.0;
+    private PIDController               pidController;
 
     public MecanumDriveSystem(HardwareMap hardwareMap) {
-        this.frontLeftMotor             = hardwareMap.get(DcMotor.class,"front left motor");
-        this.rearLeftMotor              = hardwareMap.get(DcMotor.class,"rear left motor");
-        this.frontRightMotor            = hardwareMap.get(DcMotor.class,"front right motor");
-        this.rearRightMotor             = hardwareMap.get(DcMotor.class,"rear right motor");
-        this.rearRightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
-        this.frontRightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+        /* MOTORS */
+        frontLeftMotor             = hardwareMap.get(DcMotor.class,"front left motor");
+        rearLeftMotor              = hardwareMap.get(DcMotor.class,"rear left motor");
+        frontRightMotor            = hardwareMap.get(DcMotor.class,"front right motor");
+        rearRightMotor             = hardwareMap.get(DcMotor.class,"rear right motor");
+        rearRightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+        frontRightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
 
+        /* GYRO */
         BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
         parameters.angleUnit            = BNO055IMU.AngleUnit.DEGREES;
         parameters.accelUnit            = BNO055IMU.AccelUnit.METERS_PERSEC_PERSEC;
@@ -42,16 +52,29 @@ public class MecanumDriveSystem {
         parameters.accelerationIntegrationAlgorithm = new JustLoggingAccelerationIntegrator();
         imu = hardwareMap.get(BNO055IMU.class, "imu");
         imu.initialize(parameters);
+
+        pidController = new PIDController(p, i, d);
+        pidController.setSetpointRange(range);
+        pidController.setOutputLimits(0.2);
+        pidController.setOutputFilter(0.2);
+
     }
 
-    public void drive(double x, double y, double turn) {
+    public void mecanumDrive(double x, double y, double turn) {
         this.frontLeftMotor.setPower(y - x - turn);
         this.rearLeftMotor.setPower(y + x - turn);
         this.frontRightMotor.setPower(y + x + turn);
         this.rearRightMotor.setPower(y - x + turn);
     }
 
-    public void drive(double frontLeftSpeed, double rearLeftSpeed,
+    public void mecanumDrive(double left_x, double right_x, double left_y, double right_y) {
+        this.frontLeftMotor.setPower(left_y + left_x - right_x);
+        this.rearLeftMotor.setPower(left_y - left_x + right_x);
+        this.frontRightMotor.setPower(right_y - left_x + right_x);
+        this.rearRightMotor.setPower(right_y + left_x - right_x);
+    }
+
+    public void drive(double frontLeftSpeed,  double rearLeftSpeed,
                       double frontRightSpeed, double rearRightSpeed) {
         this.frontLeftMotor.setPower(frontLeftSpeed);
         this.rearLeftMotor.setPower(rearLeftSpeed);
@@ -71,6 +94,7 @@ public class MecanumDriveSystem {
         this.rearLeftMotor.setPower(0.0);
         this.frontRightMotor.setPower(0.0);
         this.rearRightMotor.setPower(0.0);
+        this.pidController.reset();
     }
 
     public double getFrontRightSpeed() {
@@ -114,5 +138,23 @@ public class MecanumDriveSystem {
     public double getAngle() {
         Orientation angles = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
         return angles.firstAngle;
+    }
+
+    public boolean isFinished() {
+        if (((setpoint - range) < getAngle()) && ((setpoint + range) > getAngle())) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public void setAngle(double angle) {
+        this.setpoint = angle;
+        pidController.setSetpoint(setpoint);
+        if (isFinished()) {
+            stop();
+        } else {
+            drive(pidController.getOutput(getAngle()), -pidController.getOutput(getAngle()));
+        }
     }
 }

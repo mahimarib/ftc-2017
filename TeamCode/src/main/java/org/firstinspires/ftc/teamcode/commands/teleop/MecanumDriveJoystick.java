@@ -1,9 +1,7 @@
 package org.firstinspires.ftc.teamcode.commands.teleop;
 
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.systems.MecanumDriveSystem;
@@ -12,8 +10,8 @@ import org.firstinspires.ftc.teamcode.systems.ArmSystem;
 /**
  * Created by Mahim on 1/3/2018.
  */
-@TeleOp(name = "mecanum drive")
-public class MecanumDrive extends OpMode {
+@TeleOp(name = "mecanum drive joystick")
+public class MecanumDriveJoystick extends OpMode {
     private MecanumDriveSystem  mecanumDriveSystem;
     private ArmSystem           armSystem;
     private ElapsedTime         runtime = new ElapsedTime();
@@ -32,8 +30,8 @@ public class MecanumDrive extends OpMode {
 
     @Override
     public void loop() {
-        this.mecanumDriveSystem.drive(gamepad1.left_stick_x, gamepad1.left_stick_y, gamepad1.right_stick_x);
-        this.armSystem.triggerArmServoTop(gamepad2.right_trigger);
+        this.mecanumDriveSystem.mecanumDrive(gamepad1.left_stick_x, gamepad1.left_stick_y, gamepad1.right_stick_x);
+        this.armSystem.triggerArmServo(gamepad2.right_trigger);
 
         if(gamepad2.dpad_up) {
             armSystem.goUp();
