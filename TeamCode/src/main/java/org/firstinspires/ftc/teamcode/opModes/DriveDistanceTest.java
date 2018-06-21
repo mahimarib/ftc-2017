@@ -6,10 +6,10 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import org.firstinspires.ftc.teamcode.hardware.Robot;
 
 /**
- * Created by Mahim on 6/16/18.
+ * Created by nycfirst on 6/20/18.
  */
-@Autonomous(name = "Turn Test", group = "Auto")
-public class TurnTest extends LinearOpMode {
+@Autonomous(name = "Drive distance")
+public class DriveDistanceTest extends LinearOpMode {
     private Robot robot = new Robot(this);
 
     @Override
@@ -19,16 +19,13 @@ public class TurnTest extends LinearOpMode {
 
         waitForStart();
 
-        robot.driveSystem.turn(90);
-        sleep(1000);
-        robot.driveSystem.turn(-180);
-        sleep(1000);
-        robot.driveSystem.turn(90);
-        sleep(1000);
-        robot.driveSystem.turn(-180);
+        robot.driveSystem.driveDistance(55);
         sleep(1000);
 
-        telemetry.addData("Path", "Complete");
-        telemetry.update();
+        robot.driveSystem.turn(-90);
+        sleep(1000);
+
+        robot.driveSystem.driveDistance(77.5);
+        sleep(1000);
     }
 }

@@ -1,6 +1,5 @@
 package org.firstinspires.ftc.teamcode.opModes;
 
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
@@ -20,7 +19,9 @@ public class TeleOPDrive extends OpMode {
 
     @Override
     public void loop() {
-        robot.driveTrain.drive(gamepad1.left_stick_y, gamepad1.right_stick_y);
-        robot.driveTrain.getSpeed(telemetry);
+        robot.driveSystem.drive(-gamepad1.left_stick_y, -gamepad1.right_stick_y);
+        robot.driveSystem.getSpeed(telemetry);
+        telemetry.addData("left joystick", -gamepad1.left_stick_y);
+        telemetry.addData("right joystick", -gamepad1.right_stick_y);
     }
 }
