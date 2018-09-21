@@ -3,10 +3,11 @@ package org.firstinspires.ftc.teamcode.systems;
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.hardware.bosch.JustLoggingAccelerationIntegrator;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.util.Range;
+import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.robotcore.external.navigation.*;
 import org.firstinspires.ftc.teamcode.systems.tools.Direction;
 
@@ -123,5 +124,59 @@ public class MecanumDriveSystem extends Mechanism {
     public double getAngle() {
         Orientation angles = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
         return angles.firstAngle;
+    }
+
+    /**
+     * Turns to the desired given angle using PIDs
+     * turn left is +angle, turn right is -angle
+     *
+     * @param targetAngle target angle in degrees
+     */
+    public void turn(double targetAngle) {
+        targetAngle %= 360;
+        targetAngle += getAngle();
+
+        double integral = 0;
+        double prevError = 0;
+
+        double kP = 0.03;
+        double kI = 0;
+        double kD = 0.018;
+
+        double maxSpeed = 1.0;
+
+        while (linearOpMode.opModeIsActive() && Math.abs(getAngleError(targetAngle)) > 1.5) {
+            double error = getAngleError(targetAngle);
+
+            integral += error;
+            double derivative = error - prevError;
+
+            double kP_output = kP * error;
+            double kI_output = kI * integral;
+            double kD_output = kD * derivative;
+
+            double output = Range.clip(kP_output + kI_output - kD_output, -maxSpeed, maxSpeed);
+
+            prevError = error;
+
+            drive(-output, output);
+
+            opMode.telemetry.addData("Heading: ", "%.2f : %.2f", targetAngle, getAngle());
+            opMode.telemetry.addData("Velocity: ", "%.2f", output);
+            getSpeed(opMode.telemetry);
+            opMode.telemetry.update();
+        }
+        stop();
+    }
+
+    private double getAngleError(double targetAngle) {
+        return targetAngle - getAngle();
+    }
+
+    public void getSpeed(Telemetry telemetry) {
+        telemetry.addData("front left", frontLeftMotor.getPower());
+        telemetry.addData("rear left", rearLeftMotor.getPower());
+        telemetry.addData("front right", frontRightMotor.getPower());
+        telemetry.addData("rear right", rearRightMotor.getPower());
     }
 }
