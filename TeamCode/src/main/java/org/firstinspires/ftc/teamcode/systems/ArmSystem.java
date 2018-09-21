@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.systems;
 
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
@@ -8,15 +9,22 @@ import com.qualcomm.robotcore.hardware.Servo;
  * Created by Mahim on 1/9/18.
  */
 
-public class ArmSystem {
+public class ArmSystem extends Mechanism{
     private Servo   leftArmServo;
     private Servo   rightArmServo;
     private DcMotor armMotor;
 
-    public ArmSystem(HardwareMap hardwareMap) {
-        this.leftArmServo   = hardwareMap.get(Servo.class, "left arm servo");
-        this.rightArmServo  = hardwareMap.get(Servo.class, "right arm servo");
-        this.armMotor       = hardwareMap.get(DcMotor.class, "arm motor");
+    public ArmSystem(LinearOpMode opMode) {
+        this.linearOpMode = opMode;
+    }
+
+    public ArmSystem() {}
+
+    @Override
+    public void init(HardwareMap hwMap) {
+        this.leftArmServo   = hwMap.get(Servo.class, "left arm servo");
+        this.rightArmServo  = hwMap.get(Servo.class, "right arm servo");
+        this.armMotor       = hwMap.get(DcMotor.class, "arm motor");
         this.rightArmServo.setDirection(Servo.Direction.REVERSE);
     }
 
