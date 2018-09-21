@@ -4,7 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import org.firstinspires.ftc.teamcode.systems.MecanumDriveSystem;
-import org.firstinspires.ftc.teamcode.systems.Robot;
+import org.firstinspires.ftc.teamcode.Robot;
 
 /**
  * Created by Mahim on 1/13/2018.

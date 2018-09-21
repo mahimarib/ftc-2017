@@ -1,7 +1,11 @@
-package org.firstinspires.ftc.teamcode.systems;
+package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import org.firstinspires.ftc.teamcode.systems.ArmSystem;
+import org.firstinspires.ftc.teamcode.systems.ColorSensorSystem;
+import org.firstinspires.ftc.teamcode.systems.MecanumDriveSystem;
+import org.firstinspires.ftc.teamcode.systems.Mechanism;
 
 public class Robot extends Mechanism {
     public MecanumDriveSystem driveSystem;
