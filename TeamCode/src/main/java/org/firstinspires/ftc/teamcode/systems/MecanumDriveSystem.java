@@ -9,7 +9,6 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.util.Range;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.robotcore.external.navigation.*;
-import org.firstinspires.ftc.teamcode.systems.tools.Direction;
 
 /**
  * Created by Mahim on 12/4/2017.
@@ -54,6 +53,10 @@ public class MecanumDriveSystem extends Mechanism {
         imu.startAccelerationIntegration(new Position(), new Velocity(), 1000);
     }
 
+    public enum Direction {
+        FORWARD, REVERSE
+    }
+
     public void drive(double x, double y, double turn) {
         this.frontLeftMotor.setPower(y - x - turn);
         this.rearLeftMotor.setPower(y + x - turn);
@@ -81,22 +84,6 @@ public class MecanumDriveSystem extends Mechanism {
         this.rearLeftMotor.setPower(0.0);
         this.frontRightMotor.setPower(0.0);
         this.rearRightMotor.setPower(0.0);
-    }
-
-    public double getFrontRightSpeed() {
-        return this.frontRightMotor.getPower();
-    }
-
-    public double getRearRightSpeed() {
-        return this.rearRightMotor.getPower();
-    }
-
-    public double getFrontLeftSpeed() {
-        return this.frontLeftMotor.getPower();
-    }
-
-    public double getRearLeftSpeed() {
-        return  this.rearLeftMotor.getPower();
     }
 
     private void driveForward(double leftSpeed, double rightSpeed) {
