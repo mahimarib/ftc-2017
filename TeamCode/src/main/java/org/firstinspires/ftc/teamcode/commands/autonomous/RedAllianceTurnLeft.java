@@ -1,11 +1,11 @@
-package org.firstinspires.ftc.teamcode.OldRobot.commands.autonomous;
+package org.firstinspires.ftc.teamcode.commands.autonomous;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
-import org.firstinspires.ftc.teamcode.OldRobot.systems.ArmSystem;
-import org.firstinspires.ftc.teamcode.OldRobot.systems.DriveSystem;
+import org.firstinspires.ftc.teamcode.systems.ArmSystem;
+import org.firstinspires.ftc.teamcode.systems.DriveSystem;
 
 /**
  * Created by Mahim on 12/9/2017.
