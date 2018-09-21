@@ -10,8 +10,8 @@ import com.qualcomm.robotcore.hardware.Servo;
  */
 
 public class ColorSensorSystem extends Mechanism {
-    private ColorSensor         colorSensor;
-    private Servo               servo;
+    private ColorSensor colorSensor;
+    private Servo servo;
     private static final double INIT_POSITION = 0.0;
     private static final double DOWN_POSITION = 1.0;
 
@@ -23,8 +23,8 @@ public class ColorSensorSystem extends Mechanism {
 
     @Override
     public void init(HardwareMap hwMap) {
-        this.colorSensor    = hwMap.colorSensor.get("color sensor");
-        this.servo          = hwMap.get(Servo.class, "jewel arm servo");
+        this.colorSensor = hwMap.colorSensor.get("color sensor");
+        this.servo = hwMap.get(Servo.class, "jewel arm servo");
     }
 
     public void setInitPosition() {
