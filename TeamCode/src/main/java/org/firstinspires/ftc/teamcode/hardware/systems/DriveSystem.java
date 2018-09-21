@@ -207,11 +207,11 @@ public class DriveSystem extends Mechanism {
     }
 
     public double getLeftEncoderAvg() {
-        return (frontLeftMotor.getCurrentPosition() + rearLeftMotor.getCurrentPosition()) / 2;
+        return (double)(frontLeftMotor.getCurrentPosition() + rearLeftMotor.getCurrentPosition()) / 2;
     }
 
     public double getRightEncoderAvg() {
-        return (frontRightMotor.getCurrentPosition() + rearRightMotor.getCurrentPosition()) / 2;
+        return (double)(frontRightMotor.getCurrentPosition() + rearRightMotor.getCurrentPosition()) / 2;
     }
 
     // Get the difference in the target angle and the current heading
