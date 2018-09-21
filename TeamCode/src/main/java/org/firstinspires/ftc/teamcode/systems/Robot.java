@@ -27,4 +27,45 @@ public class Robot extends Mechanism {
         colorSensorSystem.init(hwMap);
         colorSensorSystem.setInitPosition();
     }
+
+    public enum Jewels {
+        RED, BLUE
+    }
+
+    public void knockDownJewel(Jewels jewels) {
+        switch (jewels) {
+            case RED:
+                colorSensorSystem.goDown();
+                linearOpMode.sleep(1500);
+                if(colorSensorSystem.isRed()) {
+                    driveSystem.drive(0.5, 0.5, MecanumDriveSystem.Direction.REVERSE);
+                    linearOpMode.sleep(250);
+                } else if(colorSensorSystem.isBlue()) {
+                    driveSystem.drive(0.5, 0.5, MecanumDriveSystem.Direction.FORWARD);
+                    linearOpMode.sleep(250);
+                } else {
+                    driveSystem.stop();
+                }
+                colorSensorSystem.setInitPosition();
+                linearOpMode.sleep(1000);
+                break;
+            case BLUE:
+                colorSensorSystem.goDown();
+                linearOpMode.sleep(1500);
+                if(colorSensorSystem.isBlue()) {
+                    driveSystem.drive(0.5, 0.5, MecanumDriveSystem.Direction.REVERSE);
+                    linearOpMode.sleep(250);
+                } else if(colorSensorSystem.isRed()) {
+                    driveSystem.drive(0.5, 0.5, MecanumDriveSystem.Direction.FORWARD);
+                    linearOpMode.sleep(250);
+                } else {
+                    driveSystem.stop();
+                }
+                colorSensorSystem.setInitPosition();
+                linearOpMode.sleep(1000);
+                break;
+            default:
+                driveSystem.stop();
+        }
+    }
 }
