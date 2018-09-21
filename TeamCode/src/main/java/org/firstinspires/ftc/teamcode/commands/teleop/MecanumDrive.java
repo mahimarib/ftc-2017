@@ -6,20 +6,19 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.systems.MecanumDriveSystem;
 import org.firstinspires.ftc.teamcode.systems.ArmSystem;
+import org.firstinspires.ftc.teamcode.systems.Robot;
 
 /**
  * Created by Mahim on 1/3/2018.
  */
 @TeleOp(name = "mecanum drive")
 public class MecanumDrive extends OpMode {
-    private MecanumDriveSystem  mecanumDriveSystem;
-    private ArmSystem           armSystem;
-    private ElapsedTime         runtime = new ElapsedTime();
+    private Robot robot = new Robot();
+    private ElapsedTime runtime = new ElapsedTime();
 
     @Override
     public void init() {
-        this.armSystem = new ArmSystem(hardwareMap);
-        this.mecanumDriveSystem = new MecanumDriveSystem(hardwareMap);
+        robot.init(hardwareMap);
     }
 
     @Override
@@ -30,40 +29,40 @@ public class MecanumDrive extends OpMode {
 
     @Override
     public void loop() {
-        this.mecanumDriveSystem.drive(gamepad1.left_stick_x, gamepad1.left_stick_y, gamepad1.right_stick_x);
-        this.armSystem.triggerArmServoTop(gamepad2.right_trigger);
+        robot.driveSystem.drive(gamepad1.left_stick_x, gamepad1.left_stick_y, gamepad1.right_stick_x);
+        robot.armSystem.triggerArmServoTop(gamepad2.right_trigger);
 
         if(gamepad2.dpad_up) {
-            armSystem.goUp();
+            robot.armSystem.goUp();
         } else {
-            armSystem.stopArmMotor();
+            robot.armSystem.stopArmMotor();
         }
 
         if(gamepad2.dpad_down) {
-            armSystem.goDown();
+            robot.armSystem.goDown();
         } else {
-            armSystem.stopArmMotor();
+            robot.armSystem.stopArmMotor();
         }
 
         if(gamepad2.left_bumper) {
-            armSystem.stopArmMotor();
+            robot.armSystem.stopArmMotor();
         }
 
         telemetry();
     }
 
     private void telemetry() {
-        telemetry.addData("front left speed", mecanumDriveSystem.getFrontLeftSpeed());
-        telemetry.addData("rear left speed", mecanumDriveSystem.getRearLeftSpeed());
-        telemetry.addData("front right speed", mecanumDriveSystem.getFrontRightSpeed());
-        telemetry.addData("rear right speed", mecanumDriveSystem.getRearRightSpeed());
-        telemetry.addData("left servo", armSystem.getLeftServoPosition());
-        telemetry.addData("right servo", armSystem.getRightServoPosition());
-        telemetry.addData("angle", mecanumDriveSystem.getAngle());
+        telemetry.addData("front left speed", robot.driveSystem.getFrontLeftSpeed());
+        telemetry.addData("rear left speed", robot.driveSystem.getRearLeftSpeed());
+        telemetry.addData("front right speed", robot.driveSystem.getFrontRightSpeed());
+        telemetry.addData("rear right speed", robot.driveSystem.getRearRightSpeed());
+        telemetry.addData("left servo", robot.armSystem.getLeftServoPosition());
+        telemetry.addData("right servo", robot.armSystem.getRightServoPosition());
+        telemetry.addData("angle", robot.driveSystem.getAngle());
     }
 
     @Override
     public void stop() {
-        this.mecanumDriveSystem.stop();
+        robot.driveSystem.stop();
     }
 }
