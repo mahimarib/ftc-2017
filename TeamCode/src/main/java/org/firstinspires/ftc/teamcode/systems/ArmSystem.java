@@ -9,7 +9,7 @@ import com.qualcomm.robotcore.hardware.Servo;
  * Created by Mahim on 1/9/18.
  */
 
-public class ArmSystem extends Mechanism{
+public class ArmSystem extends Mechanism {
     private Servo   leftArmServo;
     private Servo   rightArmServo;
     private DcMotor armMotor;
