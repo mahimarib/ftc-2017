@@ -3,9 +3,6 @@ package org.firstinspires.ftc.teamcode.commands.teleop;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.ElapsedTime;
-
-import org.firstinspires.ftc.teamcode.systems.MecanumDriveSystem;
-import org.firstinspires.ftc.teamcode.systems.ArmSystem;
 import org.firstinspires.ftc.teamcode.systems.Robot;
 
 /**
@@ -52,10 +49,7 @@ public class MecanumDrive extends OpMode {
     }
 
     private void telemetry() {
-        telemetry.addData("front left speed", robot.driveSystem.getFrontLeftSpeed());
-        telemetry.addData("rear left speed", robot.driveSystem.getRearLeftSpeed());
-        telemetry.addData("front right speed", robot.driveSystem.getFrontRightSpeed());
-        telemetry.addData("rear right speed", robot.driveSystem.getRearRightSpeed());
+        robot.driveSystem.getSpeed(telemetry);
         telemetry.addData("left servo", robot.armSystem.getLeftServoPosition());
         telemetry.addData("right servo", robot.armSystem.getRightServoPosition());
         telemetry.addData("angle", robot.driveSystem.getAngle());
