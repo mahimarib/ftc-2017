@@ -1,12 +1,8 @@
 package org.firstinspires.ftc.teamcode.systems;
 
-import android.hardware.Sensor;
-
-import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
-import com.qualcomm.robotcore.util.Range;
 
 /**
  * Created by Mahim on 1/9/18.
