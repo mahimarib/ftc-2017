@@ -26,7 +26,7 @@ public class RedTop extends LinearOpMode {
         int count = 0;
 
         while (opModeIsActive() && (count < 1)) {
-            robot.knockDownJewel(Robot.Jewels.BLUE);
+            robot.knockDownBlueJewel();
             robot.driveSystem.stop();
             sleep(1000);
             robot.driveSystem.drive(0.3, 0.5, MecanumDriveSystem.Direction.FORWARD);

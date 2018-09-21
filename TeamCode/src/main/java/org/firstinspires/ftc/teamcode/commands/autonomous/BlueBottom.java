@@ -26,7 +26,7 @@ public class BlueBottom extends LinearOpMode {
         int count = 0;
 
         while (opModeIsActive() && (count < 1)) {
-            robot.knockDownJewel(Robot.Jewels.RED);
+            robot.knockDownRedJewel();
             robot.driveSystem.stop();
             sleep(1000);
             robot.driveSystem.drive(0.5, 0.3, MecanumDriveSystem.Direction.REVERSE);
