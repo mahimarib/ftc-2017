@@ -25,5 +25,6 @@ public class Robot extends Mechanism {
         driveSystem.init(hwMap);
         armSystem.init(hwMap);
         colorSensorSystem.init(hwMap);
+        colorSensorSystem.setInitPosition();
     }
 }
