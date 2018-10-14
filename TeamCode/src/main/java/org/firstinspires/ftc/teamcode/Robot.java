@@ -7,6 +7,9 @@ import org.firstinspires.ftc.teamcode.systems.ColorSensorSystem;
 import org.firstinspires.ftc.teamcode.systems.MecanumDriveSystem;
 import org.firstinspires.ftc.teamcode.systems.Mechanism;
 
+import static org.firstinspires.ftc.teamcode.systems.MecanumDriveSystem.Direction.FORWARD;
+import static org.firstinspires.ftc.teamcode.systems.MecanumDriveSystem.Direction.REVERSE;
+
 public class Robot extends Mechanism {
     public MecanumDriveSystem driveSystem;
     public ArmSystem armSystem;
@@ -36,10 +39,10 @@ public class Robot extends Mechanism {
         colorSensorSystem.goDown();
         linearOpMode.sleep(1500);
         if(colorSensorSystem.isBlue()) {
-            driveSystem.drive(0.5, 0.5, MecanumDriveSystem.Direction.REVERSE);
+            driveSystem.drive(0.5, 0.5, REVERSE);
             linearOpMode.sleep(250);
         } else if(colorSensorSystem.isRed()) {
-            driveSystem.drive(0.5, 0.5, MecanumDriveSystem.Direction.FORWARD);
+            driveSystem.drive(0.5, 0.5, FORWARD);
             linearOpMode.sleep(250);
         } else {
             driveSystem.stop();
@@ -52,10 +55,10 @@ public class Robot extends Mechanism {
         colorSensorSystem.goDown();
         linearOpMode.sleep(1500);
         if(colorSensorSystem.isBlue()) {
-            driveSystem.drive(0.5, 0.5, MecanumDriveSystem.Direction.REVERSE);
+            driveSystem.drive(0.5, 0.5, REVERSE);
             linearOpMode.sleep(250);
         } else if(colorSensorSystem.isRed()) {
-            driveSystem.drive(0.5, 0.5, MecanumDriveSystem.Direction.FORWARD);
+            driveSystem.drive(0.5, 0.5, FORWARD);
             linearOpMode.sleep(250);
         } else {
             driveSystem.stop();
