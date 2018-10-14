@@ -48,10 +48,10 @@ public class ColorSensorSystem extends Mechanism {
     }
 
     public boolean isBlue() {
-        return (getBlue() > getRed()) && (getBlue() > getGreen());
+        return getBlue() > getRed() && getBlue() > getGreen();
     }
 
     public boolean isRed() {
-        return (getRed() > getBlue()) && (getRed() > getGreen());
+        return getRed() > getBlue() && getRed() > getGreen();
     }
 }
