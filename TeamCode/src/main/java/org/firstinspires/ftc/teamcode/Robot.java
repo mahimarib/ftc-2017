@@ -39,10 +39,10 @@ public class Robot extends Mechanism {
         colorSensorSystem.goDown();
         linearOpMode.sleep(1500);
         if(colorSensorSystem.isBlue()) {
-            driveSystem.drive(0.5, 0.5, REVERSE);
+            driveSystem.drive(0.5, 0.5, REVERSE); //TODO: check if it's the right direction
             linearOpMode.sleep(250);
         } else if(colorSensorSystem.isRed()) {
-            driveSystem.drive(0.5, 0.5, FORWARD);
+            driveSystem.drive(0.5, 0.5, FORWARD); //TODO: check if it's the right direction
             linearOpMode.sleep(250);
         } else {
             driveSystem.stop();
@@ -55,10 +55,10 @@ public class Robot extends Mechanism {
         colorSensorSystem.goDown();
         linearOpMode.sleep(1500);
         if(colorSensorSystem.isBlue()) {
-            driveSystem.drive(0.5, 0.5, REVERSE);
+            driveSystem.drive(0.5, 0.5, FORWARD); //TODO: check if it's the right direction
             linearOpMode.sleep(250);
         } else if(colorSensorSystem.isRed()) {
-            driveSystem.drive(0.5, 0.5, FORWARD);
+            driveSystem.drive(0.5, 0.5, REVERSE); //TODO: check if it's the right direction
             linearOpMode.sleep(250);
         } else {
             driveSystem.stop();
