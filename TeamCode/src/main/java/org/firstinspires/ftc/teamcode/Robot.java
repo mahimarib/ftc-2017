@@ -11,9 +11,9 @@ import static org.firstinspires.ftc.teamcode.systems.MecanumDriveSystem.Directio
 import static org.firstinspires.ftc.teamcode.systems.MecanumDriveSystem.Direction.REVERSE;
 
 public class Robot extends Mechanism {
-    public MecanumDriveSystem driveSystem;
-    public ArmSystem armSystem;
-    public ColorSensorSystem colorSensorSystem;
+    public final MecanumDriveSystem driveSystem;
+    public final ArmSystem armSystem;
+    public final ColorSensorSystem colorSensorSystem;
 
     public Robot(LinearOpMode opMode) {
         driveSystem = new MecanumDriveSystem(opMode);
