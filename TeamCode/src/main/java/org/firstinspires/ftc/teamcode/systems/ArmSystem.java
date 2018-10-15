@@ -41,13 +41,7 @@ public class ArmSystem extends Mechanism {
         this.armMotor.setPower(0.0);
     }
 
-    public void triggerArmServoBottom(double position) {
-        double pos = position * 0.102;
-        this.leftArmServo.setPosition(pos);
-        this.rightArmServo.setPosition(pos);
-    }
-
-    public void triggerArmServoTop(double position) {
+    public void triggerArmServo(double position) {
         this.leftArmServo.setPosition(position);
         this.rightArmServo.setPosition(position);
     }
