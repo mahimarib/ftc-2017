@@ -27,7 +27,7 @@ public class MecanumDrive extends OpMode {
     @Override
     public void loop() {
         robot.driveSystem.drive(gamepad1.left_stick_x, gamepad1.left_stick_y, gamepad1.right_stick_x);
-        robot.armSystem.triggerArmServoTop(gamepad2.right_trigger);
+        robot.armSystem.triggerArmServo(gamepad2.right_trigger);
 
         if(gamepad2.dpad_up) {
             robot.armSystem.goUp();
