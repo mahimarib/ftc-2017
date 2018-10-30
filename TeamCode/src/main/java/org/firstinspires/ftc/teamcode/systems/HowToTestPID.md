@@ -43,7 +43,7 @@ using different coefficient values. So you'll just be editing 3 lines of code.
 
 ## Picking Right Values
 
-In the file [`MecanumDriveSystem.java`](MecanumDriveSystem.java#L114) lines
+In the file [`MecanumDriveSystem.java`](MecanumDriveSystem.java#L114-L116) lines
 114 - 116 you have 3 PID coefficients:
 
 ```java
