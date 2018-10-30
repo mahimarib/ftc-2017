@@ -7,8 +7,7 @@ import org.firstinspires.ftc.teamcode.systems.ColorSensorSystem;
 import org.firstinspires.ftc.teamcode.systems.MecanumDriveSystem;
 import org.firstinspires.ftc.teamcode.systems.Mechanism;
 
-import static org.firstinspires.ftc.teamcode.systems.MecanumDriveSystem.Direction.FORWARD;
-import static org.firstinspires.ftc.teamcode.systems.MecanumDriveSystem.Direction.REVERSE;
+import static org.firstinspires.ftc.teamcode.systems.MecanumDriveSystem.Direction;
 
 public class Robot extends Mechanism {
     public final MecanumDriveSystem driveSystem;
@@ -38,11 +37,13 @@ public class Robot extends Mechanism {
     public void knockDownBlueJewel() {
         colorSensorSystem.goDown();
         linearOpMode.sleep(1500);
-        if(colorSensorSystem.isBlue()) {
-            driveSystem.drive(0.5, 0.5, REVERSE); //TODO: check if it's the right direction
+        if (colorSensorSystem.isBlue()) {
+            driveSystem.drive(0.5, 0.5, Direction.REVERSE);
+            //TODO: check if it's the right direction
             linearOpMode.sleep(250);
-        } else if(colorSensorSystem.isRed()) {
-            driveSystem.drive(0.5, 0.5, FORWARD); //TODO: check if it's the right direction
+        } else if (colorSensorSystem.isRed()) {
+            driveSystem.drive(0.5, 0.5, Direction.FORWARD);
+            //TODO: check if it's the right direction
             linearOpMode.sleep(250);
         } else {
             driveSystem.stop();
@@ -54,11 +55,13 @@ public class Robot extends Mechanism {
     public void knockDownRedJewel() {
         colorSensorSystem.goDown();
         linearOpMode.sleep(1500);
-        if(colorSensorSystem.isBlue()) {
-            driveSystem.drive(0.5, 0.5, FORWARD); //TODO: check if it's the right direction
+        if (colorSensorSystem.isBlue()) {
+            driveSystem.drive(0.5, 0.5, Direction.FORWARD);
+            //TODO: check if it's the right direction
             linearOpMode.sleep(250);
-        } else if(colorSensorSystem.isRed()) {
-            driveSystem.drive(0.5, 0.5, REVERSE); //TODO: check if it's the right direction
+        } else if (colorSensorSystem.isRed()) {
+            driveSystem.drive(0.5, 0.5, Direction.REVERSE);
+            //TODO: check if it's the right direction
             linearOpMode.sleep(250);
         } else {
             driveSystem.stop();

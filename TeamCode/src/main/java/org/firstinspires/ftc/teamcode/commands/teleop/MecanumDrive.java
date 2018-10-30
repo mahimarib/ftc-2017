@@ -26,22 +26,24 @@ public class MecanumDrive extends OpMode {
 
     @Override
     public void loop() {
-        robot.driveSystem.drive(gamepad1.left_stick_x, gamepad1.left_stick_y, gamepad1.right_stick_x);
+        robot.driveSystem.drive(
+                gamepad1.left_stick_x, gamepad1.left_stick_y,
+                gamepad1.right_stick_x);
         robot.armSystem.triggerArmServo(gamepad2.right_trigger);
 
-        if(gamepad2.dpad_up) {
+        if (gamepad2.dpad_up) {
             robot.armSystem.goUp();
         } else {
             robot.armSystem.stopArmMotor();
         }
 
-        if(gamepad2.dpad_down) {
+        if (gamepad2.dpad_down) {
             robot.armSystem.goDown();
         } else {
             robot.armSystem.stopArmMotor();
         }
 
-        if(gamepad2.left_bumper) {
+        if (gamepad2.left_bumper) {
             robot.armSystem.stopArmMotor();
         }
 
@@ -51,7 +53,8 @@ public class MecanumDrive extends OpMode {
     private void telemetry() {
         robot.driveSystem.getSpeed(telemetry);
         telemetry.addData("left servo", robot.armSystem.getLeftServoPosition());
-        telemetry.addData("right servo", robot.armSystem.getRightServoPosition());
+        telemetry.addData(
+                "right servo", robot.armSystem.getRightServoPosition());
         telemetry.addData("angle", robot.driveSystem.getAngle());
     }
 

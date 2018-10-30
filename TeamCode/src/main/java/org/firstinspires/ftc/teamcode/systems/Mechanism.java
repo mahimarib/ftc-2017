@@ -9,10 +9,12 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 /**
- * Mechanism is an abstract class for all mechanisms on a robot. It contains methods and/or instance
+ * Mechanism is an abstract class for all mechanisms on a robot. It contains
+ * methods and/or instance
  * variables common to all mechanisms.
- *
- * All robot mechanisms, including the main hardware map, should extend this abstract class.
+ * <p>
+ * All robot mechanisms, including the main hardware map, should extend this
+ * abstract class.
  */
 public abstract class Mechanism {
 
@@ -23,9 +25,11 @@ public abstract class Mechanism {
     protected OpMode opMode;
 
     /**
-     * Initializes hardware on the robot. Gets and stores references to the robot configuration and
+     * Initializes hardware on the robot. Gets and stores references to the
+     * robot configuration and
      * sets motors and servos to their starting positions.
-     * @param hwMap     robot's hardware map
+     *
+     * @param hwMap robot's hardware map
      */
     public abstract void init(HardwareMap hwMap);
 

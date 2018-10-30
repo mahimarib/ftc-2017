@@ -15,10 +15,10 @@ import org.firstinspires.ftc.robotcore.external.navigation.*;
  */
 
 public class MecanumDriveSystem extends Mechanism {
-    private DcMotor   frontLeftMotor;
-    private DcMotor   rearLeftMotor;
-    private DcMotor   frontRightMotor;
-    private DcMotor   rearRightMotor;
+    private DcMotor frontLeftMotor;
+    private DcMotor rearLeftMotor;
+    private DcMotor frontRightMotor;
+    private DcMotor rearRightMotor;
     private BNO055IMU imu;
 
     public MecanumDriveSystem(LinearOpMode linearOpMode) {
@@ -29,10 +29,10 @@ public class MecanumDriveSystem extends Mechanism {
 
     @Override
     public void init(HardwareMap hwMap) {
-        this.frontLeftMotor  = hwMap.get(DcMotor.class,"front left motor");
-        this.rearLeftMotor   = hwMap.get(DcMotor.class,"rear left motor");
-        this.frontRightMotor = hwMap.get(DcMotor.class,"front right motor");
-        this.rearRightMotor  = hwMap.get(DcMotor.class,"rear right motor");
+        this.frontLeftMotor = hwMap.get(DcMotor.class, "front left motor");
+        this.rearLeftMotor = hwMap.get(DcMotor.class, "rear left motor");
+        this.frontRightMotor = hwMap.get(DcMotor.class, "front right motor");
+        this.rearRightMotor = hwMap.get(DcMotor.class, "rear right motor");
         this.rearRightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
         this.frontRightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
 
@@ -42,12 +42,14 @@ public class MecanumDriveSystem extends Mechanism {
         rearRightMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
-        parameters.angleUnit            = BNO055IMU.AngleUnit.DEGREES;
-        parameters.accelUnit            = BNO055IMU.AccelUnit.METERS_PERSEC_PERSEC;
-        parameters.calibrationDataFile  = "BNO055IMUCalibration.json"; // see the calibration sample opmode
-        parameters.loggingEnabled       = true;
-        parameters.loggingTag           = "IMU";
-        parameters.accelerationIntegrationAlgorithm = new JustLoggingAccelerationIntegrator();
+        parameters.angleUnit = BNO055IMU.AngleUnit.DEGREES;
+        parameters.accelUnit = BNO055IMU.AccelUnit.METERS_PERSEC_PERSEC;
+        parameters.calibrationDataFile = "BNO055IMUCalibration.json";
+        // see the calibration sample opmode
+        parameters.loggingEnabled = true;
+        parameters.loggingTag = "IMU";
+        parameters.accelerationIntegrationAlgorithm
+                = new JustLoggingAccelerationIntegrator();
         imu = hwMap.get(BNO055IMU.class, "imu");
         imu.initialize(parameters);
         imu.startAccelerationIntegration(new Position(), new Velocity(), 1000);
@@ -62,14 +64,6 @@ public class MecanumDriveSystem extends Mechanism {
         this.rearLeftMotor.setPower(y + x - turn);
         this.frontRightMotor.setPower(y + x + turn);
         this.rearRightMotor.setPower(y - x + turn);
-    }
-
-    public void drive(double frontLeftSpeed, double rearLeftSpeed,
-                      double frontRightSpeed, double rearRightSpeed) {
-        this.frontLeftMotor.setPower(frontLeftSpeed);
-        this.rearLeftMotor.setPower(rearLeftSpeed);
-        this.frontRightMotor.setPower(frontRightSpeed);
-        this.rearRightMotor.setPower(rearRightSpeed);
     }
 
     public void drive(double left, double right) {
@@ -87,7 +81,7 @@ public class MecanumDriveSystem extends Mechanism {
     }
 
     private void driveForward(double leftSpeed, double rightSpeed) {
-        double left  = Math.abs(leftSpeed);
+        double left = Math.abs(leftSpeed);
         double right = Math.abs(rightSpeed);
         drive(-left, -right);
     }
@@ -98,10 +92,11 @@ public class MecanumDriveSystem extends Mechanism {
         drive(left, right);
     }
 
-    public void drive(double leftSpeed,  double rightSpeed, Direction direction) {
-        if(direction == Direction.FORWARD) {
+    public void drive(
+            double leftSpeed, double rightSpeed, Direction direction) {
+        if (direction == Direction.FORWARD) {
             driveForward(leftSpeed, rightSpeed);
-        } else if(direction == Direction.REVERSE) {
+        } else if (direction == Direction.REVERSE) {
             driveBackwards(leftSpeed, rightSpeed);
         } else {
             stop();
@@ -109,7 +104,8 @@ public class MecanumDriveSystem extends Mechanism {
     }
 
     public double getAngle() {
-        Orientation angles = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
+        Orientation angles = imu.getAngularOrientation(
+                AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
         return angles.firstAngle;
     }
 
@@ -132,7 +128,8 @@ public class MecanumDriveSystem extends Mechanism {
 
         double maxSpeed = 1.0;
 
-        while (linearOpMode.opModeIsActive() && Math.abs(getAngleError(targetAngle)) > 1.5) {
+        while (linearOpMode.opModeIsActive() && Math.abs(
+                getAngleError(targetAngle)) > 1.5) {
             double error = getAngleError(targetAngle);
 
             integral += error;
@@ -142,13 +139,15 @@ public class MecanumDriveSystem extends Mechanism {
             double kI_output = kI * integral;
             double kD_output = kD * derivative;
 
-            double output = Range.clip(kP_output + kI_output - kD_output, -maxSpeed, maxSpeed);
+            double output = Range.clip(
+                    kP_output + kI_output - kD_output, -maxSpeed, maxSpeed);
 
             prevError = error;
 
             drive(-output, output);
 
-            opMode.telemetry.addData("Heading: ", "%.2f : %.2f", targetAngle, getAngle());
+            opMode.telemetry.addData(
+                    "Heading: ", "%.2f : %.2f", targetAngle, getAngle());
             opMode.telemetry.addData("Velocity: ", "%.2f", output);
             getSpeed(opMode.telemetry);
             opMode.telemetry.update();
