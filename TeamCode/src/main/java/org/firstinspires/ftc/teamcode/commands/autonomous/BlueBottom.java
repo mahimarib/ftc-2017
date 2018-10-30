@@ -3,8 +3,9 @@ package org.firstinspires.ftc.teamcode.commands.autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
-import org.firstinspires.ftc.teamcode.systems.MecanumDriveSystem;
 import org.firstinspires.ftc.teamcode.Robot;
+
+import static org.firstinspires.ftc.teamcode.systems.MecanumDriveSystem.Direction;
 
 /**
  * Created by Mahim on 1/13/2018.
@@ -23,16 +24,11 @@ public class BlueBottom extends LinearOpMode {
         initialize();
         waitForStart();
         runtime.reset();
-        int count = 0;
-
-        while (opModeIsActive() && (count < 1)) {
-            robot.knockDownRedJewel();
-            robot.driveSystem.stop();
-            sleep(1000);
-            robot.driveSystem.drive(0.5, 0.3, MecanumDriveSystem.Direction.REVERSE);
-            sleep(1000);
-            robot.driveSystem.stop();
-            count++;
-        }
+        robot.knockDownRedJewel();
+        robot.driveSystem.stop();
+        sleep(1000);
+        robot.driveSystem.drive(0.5, 0.3, Direction.REVERSE);
+        sleep(1000);
+        robot.driveSystem.stop();
     }
 }

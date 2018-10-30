@@ -3,8 +3,9 @@ package org.firstinspires.ftc.teamcode.commands.autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
-import org.firstinspires.ftc.teamcode.systems.MecanumDriveSystem;
 import org.firstinspires.ftc.teamcode.Robot;
+
+import static org.firstinspires.ftc.teamcode.systems.MecanumDriveSystem.Direction;
 
 /**
  * Created by Mahim on 1/12/2018.
@@ -23,16 +24,11 @@ public class RedTop extends LinearOpMode {
         initialize();
         waitForStart();
         runtime.reset();
-        int count = 0;
-
-        while (opModeIsActive() && (count < 1)) {
-            robot.knockDownBlueJewel();
-            robot.driveSystem.stop();
-            sleep(1000);
-            robot.driveSystem.drive(0.3, 0.5, MecanumDriveSystem.Direction.FORWARD);
-            sleep(1000);
-            robot.driveSystem.stop();
-            count++;
-        }
+        robot.knockDownBlueJewel();
+        robot.driveSystem.stop();
+        sleep(1000);
+        robot.driveSystem.drive(0.3, 0.5, Direction.FORWARD);
+        sleep(1000);
+        robot.driveSystem.stop();
     }
 }

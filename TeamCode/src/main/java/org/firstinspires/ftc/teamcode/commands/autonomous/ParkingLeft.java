@@ -22,13 +22,8 @@ public class ParkingLeft extends LinearOpMode {
         initialize();
         waitForStart();
         runtime.reset();
-        int count = 0;
-
-        while (opModeIsActive() && (count < 1)) {
-            robot.driveSystem.drive(0.5, 0.5);
-            sleep(2000);
-            count++;
-        }
+        robot.driveSystem.drive(0.5, 0.5);
+        sleep(2000);
         robot.driveSystem.stop();
     }
 }
