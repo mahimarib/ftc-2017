@@ -82,12 +82,13 @@ public class MecanumDriveSystem extends Mechanism {
 
     public void drive(
             double leftSpeed, double rightSpeed, Direction direction) {
-        if (direction == Direction.FORWARD) {
-            drive(-leftSpeed, -rightSpeed);
-        } else if (direction == Direction.REVERSE) {
-            drive(leftSpeed, rightSpeed);
-        } else {
-            stop();
+        switch (direction) {
+            case FORWARD:
+                drive(-leftSpeed, -rightSpeed);
+                break;
+            case REVERSE:
+                drive(leftSpeed, rightSpeed);
+                break;
         }
     }
 
