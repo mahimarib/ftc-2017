@@ -90,6 +90,7 @@ how big the power is. If you really wanted to you can write the values in
 scientific notation in code:
 
 ```java
+    // you can only do this with double values
     double kP = 3E-2;
     double kI = 0;
     double kD = 1.8E-2;
