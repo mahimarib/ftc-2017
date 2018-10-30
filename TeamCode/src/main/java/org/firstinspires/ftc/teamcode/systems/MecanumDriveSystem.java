@@ -80,24 +80,12 @@ public class MecanumDriveSystem extends Mechanism {
         this.rearRightMotor.setPower(0.0);
     }
 
-    private void driveForward(double leftSpeed, double rightSpeed) {
-        double left = Math.abs(leftSpeed);
-        double right = Math.abs(rightSpeed);
-        drive(-left, -right);
-    }
-
-    private void driveBackwards(double leftSpeed, double rightSpeed) {
-        double left = Math.abs(leftSpeed);
-        double right = Math.abs(rightSpeed);
-        drive(left, right);
-    }
-
     public void drive(
             double leftSpeed, double rightSpeed, Direction direction) {
         if (direction == Direction.FORWARD) {
-            driveForward(leftSpeed, rightSpeed);
+            drive(-leftSpeed, -rightSpeed);
         } else if (direction == Direction.REVERSE) {
-            driveBackwards(leftSpeed, rightSpeed);
+            drive(leftSpeed, rightSpeed);
         } else {
             stop();
         }
