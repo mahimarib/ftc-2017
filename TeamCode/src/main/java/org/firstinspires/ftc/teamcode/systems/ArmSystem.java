@@ -25,7 +25,7 @@ public class ArmSystem extends Mechanism {
         this.leftArmServo = hwMap.get(Servo.class, "left arm servo");
         this.rightArmServo = hwMap.get(Servo.class, "right arm servo");
         this.armMotor = hwMap.get(DcMotor.class, "arm motor");
-        this.rightArmServo.setDirection(Servo.Direction.REVERSE);
+        this.leftArmServo.setDirection(Servo.Direction.REVERSE);
         this.armMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
     }
 
