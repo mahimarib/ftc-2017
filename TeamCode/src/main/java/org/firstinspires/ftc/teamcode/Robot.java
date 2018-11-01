@@ -73,5 +73,5 @@ public class Robot extends Mechanism {
             colorSensorSystem.setInitPosition();
             linearOpMode.sleep(1000);
         }
-        }
+    }
 }
