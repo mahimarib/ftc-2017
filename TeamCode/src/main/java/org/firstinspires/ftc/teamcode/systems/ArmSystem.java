@@ -28,7 +28,7 @@ public class ArmSystem extends Mechanism {
         this.armMotor = hwMap.get(DcMotor.class, "arm motor");
         this.rightArmServo.setDirection(Servo.Direction.REVERSE);
         leftArmServo.scaleRange(0, OPEN_POSITION);
-        rightArmServo.scaleRange(0, OPEN_POSITION);
+        rightArmServo.scaleRange(OPEN_POSITION, 0);
     }
 
     public void goUp() {
