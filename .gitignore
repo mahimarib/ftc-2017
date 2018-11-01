@@ -24,5 +24,9 @@ Thumbs.db
 .gradle
 build/
 
+# Eclipse
+
+.project
+
 *ASUS_PC_01*
 
