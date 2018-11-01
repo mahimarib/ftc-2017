@@ -27,7 +27,7 @@ public class BlueBottom extends LinearOpMode {
         robot.knockDownRedJewel();
         robot.driveSystem.stop();
         sleep(1000);
-        robot.driveSystem.drive(0.5, 0.3, Direction.REVERSE);
+        robot.driveSystem.drive(0.5, 0.3, Direction.FORWARD);
         sleep(1000);
         robot.driveSystem.stop();
     }
