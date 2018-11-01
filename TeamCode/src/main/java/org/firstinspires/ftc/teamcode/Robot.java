@@ -14,11 +14,11 @@ public class Robot extends Mechanism {
     public final ArmSystem armSystem;
     public final ColorSensorSystem colorSensorSystem;
 
-    public Robot(LinearOpMode opMode) {
-        this.linearOpMode = opMode;
-        driveSystem = new MecanumDriveSystem(opMode);
-        armSystem = new ArmSystem(opMode);
-        colorSensorSystem = new ColorSensorSystem(opMode);
+    public Robot(LinearOpMode linearOpMode) {
+        this.linearOpMode = linearOpMode;
+        driveSystem = new MecanumDriveSystem(linearOpMode);
+        armSystem = new ArmSystem(linearOpMode);
+        colorSensorSystem = new ColorSensorSystem(linearOpMode);
     }
 
     public Robot() {
@@ -36,38 +36,42 @@ public class Robot extends Mechanism {
     }
 
     public void knockDownBlueJewel() {
-        colorSensorSystem.goDown();
-        linearOpMode.sleep(1500);
-        if (colorSensorSystem.isBlue()) {
-            driveSystem.drive(0.5, 0.5, Direction.REVERSE);
-            //TODO: check if it's the right direction
-            linearOpMode.sleep(250);
-        } else if (colorSensorSystem.isRed()) {
-            driveSystem.drive(0.5, 0.5, Direction.FORWARD);
-            //TODO: check if it's the right direction
-            linearOpMode.sleep(250);
-        } else {
-            driveSystem.stop();
+        if (linearOpMode.opModeIsActive()) {
+            colorSensorSystem.goDown();
+            linearOpMode.sleep(1500);
+            if (colorSensorSystem.isBlue()) {
+                driveSystem.drive(0.5, 0.5, Direction.REVERSE);
+                //TODO: check if it's the right direction
+                linearOpMode.sleep(250);
+            } else if (colorSensorSystem.isRed()) {
+                driveSystem.drive(0.5, 0.5, Direction.FORWARD);
+                //TODO: check if it's the right direction
+                linearOpMode.sleep(250);
+            } else {
+                driveSystem.stop();
+            }
+            colorSensorSystem.setInitPosition();
+            linearOpMode.sleep(1000);
         }
-        colorSensorSystem.setInitPosition();
-        linearOpMode.sleep(1000);
     }
 
     public void knockDownRedJewel() {
-        colorSensorSystem.goDown();
-        linearOpMode.sleep(1500);
-        if (colorSensorSystem.isBlue()) {
-            driveSystem.drive(0.5, 0.5, Direction.FORWARD);
-            //TODO: check if it's the right direction
-            linearOpMode.sleep(250);
-        } else if (colorSensorSystem.isRed()) {
-            driveSystem.drive(0.5, 0.5, Direction.REVERSE);
-            //TODO: check if it's the right direction
-            linearOpMode.sleep(250);
-        } else {
-            driveSystem.stop();
+        if (linearOpMode.opModeIsActive()) {
+            colorSensorSystem.goDown();
+            linearOpMode.sleep(1500);
+            if (colorSensorSystem.isBlue()) {
+                driveSystem.drive(0.5, 0.5, Direction.FORWARD);
+                //TODO: check if it's the right direction
+                linearOpMode.sleep(250);
+            } else if (colorSensorSystem.isRed()) {
+                driveSystem.drive(0.5, 0.5, Direction.REVERSE);
+                //TODO: check if it's the right direction
+                linearOpMode.sleep(250);
+            } else {
+                driveSystem.stop();
+            }
+            colorSensorSystem.setInitPosition();
+            linearOpMode.sleep(1000);
         }
-        colorSensorSystem.setInitPosition();
-        linearOpMode.sleep(1000);
-    }
+        }
 }
