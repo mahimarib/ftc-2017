@@ -13,6 +13,7 @@ public class ArmSystem extends Mechanism {
     private Servo leftArmServo;
     private Servo rightArmServo;
     private DcMotor armMotor;
+    private static final float OPEN_POSITION = .34901F;
 
     public ArmSystem(LinearOpMode opMode) {
         this.linearOpMode = opMode;
@@ -26,7 +27,8 @@ public class ArmSystem extends Mechanism {
         this.rightArmServo = hwMap.get(Servo.class, "right arm servo");
         this.armMotor = hwMap.get(DcMotor.class, "arm motor");
         this.rightArmServo.setDirection(Servo.Direction.REVERSE);
-        
+        leftArmServo.scaleRange(0, OPEN_POSITION);
+        rightArmServo.scaleRange(0, OPEN_POSITION);
     }
 
     public void goUp() {
