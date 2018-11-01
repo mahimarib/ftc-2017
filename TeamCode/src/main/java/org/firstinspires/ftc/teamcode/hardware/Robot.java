@@ -18,6 +18,7 @@ public class Robot extends Mechanism {
     }
 
     public Robot(LinearOpMode opMode) {
+        this.opMode = opMode;
         driveSystem = new DriveSystem(opMode);
     }
 
