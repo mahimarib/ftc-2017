@@ -15,6 +15,7 @@ public class Robot extends Mechanism {
     public final ColorSensorSystem colorSensorSystem;
 
     public Robot(LinearOpMode opMode) {
+        this.linearOpMode = opMode;
         driveSystem = new MecanumDriveSystem(opMode);
         armSystem = new ArmSystem(opMode);
         colorSensorSystem = new ColorSensorSystem(opMode);

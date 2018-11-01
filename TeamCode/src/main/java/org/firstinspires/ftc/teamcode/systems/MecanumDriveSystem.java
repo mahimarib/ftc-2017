@@ -135,11 +135,11 @@ public class MecanumDriveSystem extends Mechanism {
 
             drive(-output, output);
 
-            opMode.telemetry.addData(
+            linearOpMode.telemetry.addData(
                     "Heading: ", "%.2f : %.2f", targetAngle, getAngle());
-            opMode.telemetry.addData("Velocity: ", "%.2f", output);
-            getSpeed(opMode.telemetry);
-            opMode.telemetry.update();
+            linearOpMode.telemetry.addData("Velocity: ", "%.2f", output);
+            getSpeed(linearOpMode.telemetry);
+            linearOpMode.telemetry.update();
         }
         stop();
     }
