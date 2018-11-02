@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import org.firstinspires.ftc.teamcode.Robot;
 
-import static org.firstinspires.ftc.teamcode.systems.MecanumDriveSystem.Direction;
+import static org.firstinspires.ftc.teamcode.systems.DriveSystem.Direction;
 
 /**
  * Created by Mahim on 1/13/2018.

@@ -11,18 +11,18 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.robotcore.external.navigation.*;
 import org.firstinspires.ftc.teamcode.RobotMap;
 
-public class MecanumDriveSystem extends Mechanism {
+public class DriveSystem extends Mechanism {
     private DcMotor frontLeftMotor;
     private DcMotor rearLeftMotor;
     private DcMotor frontRightMotor;
     private DcMotor rearRightMotor;
     private BNO055IMU imu;
 
-    public MecanumDriveSystem(LinearOpMode opMode) {
+    public DriveSystem(LinearOpMode opMode) {
         this.opMode = opMode;
     }
 
-    public MecanumDriveSystem() {}
+    public DriveSystem() {}
 
     @Override
     public void init(HardwareMap hwMap) {

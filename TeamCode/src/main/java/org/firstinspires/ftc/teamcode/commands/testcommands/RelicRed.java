@@ -6,8 +6,8 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.Robot;
 
-import static org.firstinspires.ftc.teamcode.systems.MecanumDriveSystem.Direction.FORWARD;
-import static org.firstinspires.ftc.teamcode.systems.MecanumDriveSystem.Direction.REVERSE;
+import static org.firstinspires.ftc.teamcode.systems.DriveSystem.Direction.FORWARD;
+import static org.firstinspires.ftc.teamcode.systems.DriveSystem.Direction.REVERSE;
 
 /**
  * Created by Mahim on 10/31/2018.

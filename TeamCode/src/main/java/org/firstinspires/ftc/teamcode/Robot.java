@@ -4,25 +4,25 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import org.firstinspires.ftc.teamcode.systems.ArmSystem;
 import org.firstinspires.ftc.teamcode.systems.ColorSensorSystem;
-import org.firstinspires.ftc.teamcode.systems.MecanumDriveSystem;
+import org.firstinspires.ftc.teamcode.systems.DriveSystem;
 import org.firstinspires.ftc.teamcode.systems.Mechanism;
 
-import static org.firstinspires.ftc.teamcode.systems.MecanumDriveSystem.Direction;
+import static org.firstinspires.ftc.teamcode.systems.DriveSystem.Direction;
 
 public class Robot extends Mechanism {
-    public MecanumDriveSystem driveSystem;
+    public DriveSystem driveSystem;
     public ArmSystem armSystem;
     public ColorSensorSystem colorSensorSystem;
 
     public Robot(LinearOpMode opMode) {
         this.opMode = opMode;
-        driveSystem = new MecanumDriveSystem(opMode);
+        driveSystem = new DriveSystem(opMode);
         armSystem = new ArmSystem(opMode);
         colorSensorSystem = new ColorSensorSystem(opMode);
     }
 
     public Robot() {
-        driveSystem = new MecanumDriveSystem();
+        driveSystem = new DriveSystem();
         armSystem = new ArmSystem();
         colorSensorSystem = new ColorSensorSystem();
     }
