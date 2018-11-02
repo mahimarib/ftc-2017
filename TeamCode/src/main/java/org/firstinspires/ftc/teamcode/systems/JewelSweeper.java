@@ -6,17 +6,17 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 import org.firstinspires.ftc.teamcode.RobotMap;
 
-public class ColorSensorSystem extends Mechanism {
+public class JewelSweeper extends Mechanism {
     private ColorSensor colorSensor;
     private Servo servo;
     private static final double INIT_POSITION = 0.0;
     private static final double DOWN_POSITION = 1.0;
 
-    public ColorSensorSystem(LinearOpMode opMode) {
+    public JewelSweeper(LinearOpMode opMode) {
         this.opMode = opMode;
     }
 
-    public ColorSensorSystem() {}
+    public JewelSweeper() {}
 
     @Override
     public void init(HardwareMap hwMap) {
