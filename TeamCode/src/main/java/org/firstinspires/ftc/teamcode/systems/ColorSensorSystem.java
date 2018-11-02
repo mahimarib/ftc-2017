@@ -16,7 +16,7 @@ public class ColorSensorSystem extends Mechanism {
     private static final double DOWN_POSITION = 1.0;
 
     public ColorSensorSystem(LinearOpMode opMode) {
-        this.linearOpMode = opMode;
+        this.opMode = opMode;
     }
 
     public ColorSensorSystem() {}

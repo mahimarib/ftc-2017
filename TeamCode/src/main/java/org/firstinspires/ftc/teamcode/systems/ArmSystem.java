@@ -16,7 +16,7 @@ public class ArmSystem extends Mechanism {
     private static final float OPEN_POSITION = .45F;
 
     public ArmSystem(LinearOpMode opMode) {
-        this.linearOpMode = opMode;
+        this.opMode = opMode;
     }
 
     public ArmSystem() {}

@@ -21,8 +21,8 @@ public class MecanumDriveSystem extends Mechanism {
     private DcMotor rearRightMotor;
     private BNO055IMU imu;
 
-    public MecanumDriveSystem(LinearOpMode linearOpMode) {
-        this.linearOpMode = linearOpMode;
+    public MecanumDriveSystem(LinearOpMode opMode) {
+        this.opMode = opMode;
     }
 
     public MecanumDriveSystem() {}
@@ -117,7 +117,7 @@ public class MecanumDriveSystem extends Mechanism {
 
         double maxSpeed = 1.0;
 
-        while (linearOpMode.opModeIsActive() && Math.abs(
+        while (opMode.opModeIsActive() && Math.abs(
                 getAngleError(targetAngle)) > 1.5) {
             double error = getAngleError(targetAngle);
 
@@ -135,11 +135,11 @@ public class MecanumDriveSystem extends Mechanism {
 
             drive(-output, output);
 
-            linearOpMode.telemetry.addData(
+            opMode.telemetry.addData(
                     "Heading: ", "%.2f : %.2f", targetAngle, getAngle());
-            linearOpMode.telemetry.addData("Velocity: ", "%.2f", output);
-            getSpeed(linearOpMode.telemetry);
-            linearOpMode.telemetry.update();
+            opMode.telemetry.addData("Velocity: ", "%.2f", output);
+            getSpeed(opMode.telemetry);
+            opMode.telemetry.update();
         }
         stop();
     }

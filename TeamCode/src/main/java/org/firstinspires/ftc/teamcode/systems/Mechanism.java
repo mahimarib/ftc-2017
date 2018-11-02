@@ -20,7 +20,7 @@ public abstract class Mechanism {
     /**
      * OpMode context for a Mechanism class.
      */
-    protected LinearOpMode linearOpMode;
+    protected LinearOpMode opMode;
 
     /**
      * Initializes hardware on the robot. Gets and stores references to the
