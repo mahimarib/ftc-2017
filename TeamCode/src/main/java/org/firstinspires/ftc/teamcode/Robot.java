@@ -2,7 +2,7 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.HardwareMap;
-import org.firstinspires.ftc.teamcode.systems.ArmSystem;
+import org.firstinspires.ftc.teamcode.systems.Arm;
 import org.firstinspires.ftc.teamcode.systems.Drivetrain;
 import org.firstinspires.ftc.teamcode.systems.JewelSweeper;
 import org.firstinspires.ftc.teamcode.systems.Mechanism;
@@ -11,26 +11,26 @@ import static org.firstinspires.ftc.teamcode.systems.Drivetrain.Direction;
 
 public class Robot extends Mechanism {
     public Drivetrain drivetrain;
-    public ArmSystem armSystem;
+    public Arm arm;
     public JewelSweeper jewelSweeper;
 
     public Robot(LinearOpMode opMode) {
         this.opMode = opMode;
         drivetrain = new Drivetrain(opMode);
-        armSystem = new ArmSystem(opMode);
+        arm = new Arm(opMode);
         jewelSweeper = new JewelSweeper(opMode);
     }
 
     public Robot() {
         drivetrain = new Drivetrain();
-        armSystem = new ArmSystem();
+        arm = new Arm();
         jewelSweeper = new JewelSweeper();
     }
 
     @Override
     public void init(HardwareMap hwMap) {
         drivetrain.init(hwMap);
-        armSystem.init(hwMap);
+        arm.init(hwMap);
         jewelSweeper.init(hwMap);
         jewelSweeper.setInitPosition();
     }

@@ -7,11 +7,11 @@ import com.qualcomm.robotcore.hardware.Servo;
 import org.firstinspires.ftc.teamcode.RobotMap;
 
 /**
- * The ArmSystem is the class that is used to define all of the hardware that is
- * used for the robot's arm, the ArmSystem must be instantiated then
+ * The Arm is the class that is used to define all of the hardware that is
+ * used for the robot's arm, the Arm must be instantiated then
  * initialized before it can be used.
  */
-public class ArmSystem extends Mechanism {
+public class Arm extends Mechanism {
     /* Hardware members */
     private Servo leftArmServo;
     private Servo rightArmServo;
@@ -26,14 +26,14 @@ public class ArmSystem extends Mechanism {
      *
      * @param opMode LinearOpMode
      */
-    public ArmSystem(LinearOpMode opMode) {
+    public Arm(LinearOpMode opMode) {
         this.opMode = opMode;
     }
 
     /**
      * Default constructor for the arm system.
      */
-    public ArmSystem() {}
+    public Arm() {}
 
     /**
      * Maps the hardware members to the robot's HardwareMap, as well as

@@ -21,13 +21,13 @@ public class RelicRed extends LinearOpMode {
     public void runOpMode() throws InterruptedException {
         robot.init(hardwareMap);
         waitForStart();
-        robot.armSystem.triggerArmServo(0);
+        robot.arm.triggerArmServo(0);
         sleep(1000);
         robot.knockDownBlueJewel();
         robot.drivetrain.drive(.5, .5, FORWARD);
         sleep(2500);
         robot.drivetrain.drive(.3, .5, FORWARD);
-        robot.armSystem.triggerArmServo(1);
+        robot.arm.triggerArmServo(1);
         robot.drivetrain.drive(.5, .3, REVERSE);
         robot.drivetrain.drive(.5, .5, REVERSE);
 
