@@ -1,27 +1,34 @@
 package org.firstinspires.ftc.teamcode.systems;
 
-import android.hardware.Sensor;
-
-import com.qualcomm.robotcore.hardware.ColorSensor;
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
-import com.qualcomm.robotcore.util.Range;
 
 /**
  * Created by Mahim on 1/9/18.
  */
 
-public class ArmSystem {
-    private Servo   leftArmServo;
-    private Servo   rightArmServo;
+public class ArmSystem extends Mechanism {
+    private Servo leftArmServo;
+    private Servo rightArmServo;
     private DcMotor armMotor;
+    private static final float OPEN_POSITION = .45F;
 
-    public ArmSystem(HardwareMap hardwareMap) {
-        this.leftArmServo   = hardwareMap.get(Servo.class, "left arm servo");
-        this.rightArmServo  = hardwareMap.get(Servo.class, "right arm servo");
-        this.armMotor       = hardwareMap.get(DcMotor.class, "arm motor");
+    public ArmSystem(LinearOpMode opMode) {
+        this.linearOpMode = opMode;
+    }
+
+    public ArmSystem() {}
+
+    @Override
+    public void init(HardwareMap hwMap) {
+        this.leftArmServo = hwMap.get(Servo.class, "left arm servo");
+        this.rightArmServo = hwMap.get(Servo.class, "right arm servo");
+        this.armMotor = hwMap.get(DcMotor.class, "arm motor");
         this.rightArmServo.setDirection(Servo.Direction.REVERSE);
+        leftArmServo.scaleRange(0, OPEN_POSITION);
+        rightArmServo.scaleRange(1 - OPEN_POSITION, 1);
     }
 
     public void goUp() {
@@ -36,13 +43,7 @@ public class ArmSystem {
         this.armMotor.setPower(0.0);
     }
 
-    public void triggerArmServoBottom(double position) {
-        double pos = position * 0.102;
-        this.leftArmServo.setPosition(pos);
-        this.rightArmServo.setPosition(pos);
-    }
-
-    public void triggerArmServoTop(double position) {
+    public void triggerArmServo(double position) {
         this.leftArmServo.setPosition(position);
         this.rightArmServo.setPosition(position);
     }

@@ -1,29 +1,20 @@
-package org.firstinspires.ftc.teamcode.commands.autonomous;
+package org.firstinspires.ftc.teamcode.commands.testcommands;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import org.firstinspires.ftc.teamcode.Robot;
 
-/**
- * Created by Mahim on 2/2/18.
- */
-@Autonomous(name = "parking left", group = "parking")
-public class ParkingLeft extends LinearOpMode {
+@Autonomous(name = "turn test", group = "test")
+public class TurnTest extends LinearOpMode {
     private Robot robot = new Robot(this);
     private ElapsedTime runtime = new ElapsedTime();
 
-    private void initialize() {
-        robot.init(hardwareMap);
-    }
-
     @Override
     public void runOpMode() throws InterruptedException {
-        initialize();
+        robot.init(hardwareMap);
         waitForStart();
-        runtime.reset();
-        robot.driveSystem.drive(0.5, 0.5);
-        sleep(2000);
+        robot.driveSystem.turn(90);
         robot.driveSystem.stop();
     }
 }

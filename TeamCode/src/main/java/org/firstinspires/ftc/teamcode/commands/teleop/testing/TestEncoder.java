@@ -2,47 +2,41 @@ package org.firstinspires.ftc.teamcode.commands.teleop.testing;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-
-import org.firstinspires.ftc.teamcode.systems.MecanumDriveSystem;
-import org.firstinspires.ftc.teamcode.systems.tools.Direction;
+import org.firstinspires.ftc.teamcode.Robot;
+import org.firstinspires.ftc.teamcode.systems.MecanumDriveSystem.Direction;
 
 /**
  * Created by Mahim on 1/9/18.
  */
 @TeleOp(name = "testing encoders", group = "testing")
 public class TestEncoder extends OpMode {
-    private MecanumDriveSystem mecanumDrive;
+    private Robot robot = new Robot();
 
     @Override
     public void init() {
-        this.mecanumDrive = new MecanumDriveSystem(hardwareMap);
+        robot.init(hardwareMap);
     }
 
     @Override
-    public void init_loop() {
-
-    }
+    public void init_loop() {}
 
     @Override
-    public void start() {
-
-    }
+    public void start() {}
 
     @Override
     public void loop() {
-        if(gamepad1.dpad_up) {
-            this.mecanumDrive.drive(0.5, 0.5, Direction.FORWARD);
+        if (gamepad1.dpad_up) {
+            robot.driveSystem.drive(0.5, 0.5, Direction.FORWARD);
         } else {
-            this.mecanumDrive.stop();
+            robot.driveSystem.stop();
         }
         telemetry();
     }
 
-    private void telemetry() {
-    }
+    private void telemetry() {}
 
     @Override
     public void stop() {
-        this.mecanumDrive.stop();
+        robot.driveSystem.stop();
     }
 }
