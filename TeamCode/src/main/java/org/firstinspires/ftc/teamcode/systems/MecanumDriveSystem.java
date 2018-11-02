@@ -26,13 +26,13 @@ public class MecanumDriveSystem extends Mechanism {
 
     @Override
     public void init(HardwareMap hwMap) {
-        this.frontLeftMotor = hwMap.dcMotor.get(RobotMap.FRONT_LEFT_MOTOR);
-        this.rearLeftMotor = hwMap.dcMotor.get(RobotMap.REAR_LEFT_MOTOR);
-        this.frontRightMotor = hwMap.dcMotor.get(RobotMap.FRONT_RIGHT_MOTOR);
-        this.rearRightMotor = hwMap.dcMotor.get(RobotMap.REAR_RIGHT_MOTOR);
+        frontLeftMotor = hwMap.dcMotor.get(RobotMap.FRONT_LEFT_MOTOR);
+        rearLeftMotor = hwMap.dcMotor.get(RobotMap.REAR_LEFT_MOTOR);
+        frontRightMotor = hwMap.dcMotor.get(RobotMap.FRONT_RIGHT_MOTOR);
+        rearRightMotor = hwMap.dcMotor.get(RobotMap.REAR_RIGHT_MOTOR);
 
-        this.rearRightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
-        this.frontRightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+        rearRightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+        frontRightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
 
         frontLeftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         rearLeftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -58,24 +58,24 @@ public class MecanumDriveSystem extends Mechanism {
     }
 
     public void drive(double x, double y, double turn) {
-        this.frontLeftMotor.setPower(y - x - turn);
-        this.rearLeftMotor.setPower(y + x - turn);
-        this.frontRightMotor.setPower(y + x + turn);
-        this.rearRightMotor.setPower(y - x + turn);
+        frontLeftMotor.setPower(y - x - turn);
+        rearLeftMotor.setPower(y + x - turn);
+        frontRightMotor.setPower(y + x + turn);
+        rearRightMotor.setPower(y - x + turn);
     }
 
     public void drive(double left, double right) {
-        this.frontLeftMotor.setPower(left);
-        this.rearLeftMotor.setPower(left);
-        this.frontRightMotor.setPower(right);
-        this.rearRightMotor.setPower(right);
+        frontLeftMotor.setPower(left);
+        rearLeftMotor.setPower(left);
+        frontRightMotor.setPower(right);
+        rearRightMotor.setPower(right);
     }
 
     public void stop() {
-        this.frontLeftMotor.setPower(0.0);
-        this.rearLeftMotor.setPower(0.0);
-        this.frontRightMotor.setPower(0.0);
-        this.rearRightMotor.setPower(0.0);
+        frontLeftMotor.setPower(0.0);
+        rearLeftMotor.setPower(0.0);
+        frontRightMotor.setPower(0.0);
+        rearRightMotor.setPower(0.0);
     }
 
     public void drive(

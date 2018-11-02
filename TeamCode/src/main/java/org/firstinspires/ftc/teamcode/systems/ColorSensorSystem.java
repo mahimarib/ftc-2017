@@ -20,16 +20,16 @@ public class ColorSensorSystem extends Mechanism {
 
     @Override
     public void init(HardwareMap hwMap) {
-        this.colorSensor = hwMap.colorSensor.get(RobotMap.COLOR_SENSOR);
-        this.servo = hwMap.servo.get(RobotMap.COLOR_SENSOR_SERVO);
+        colorSensor = hwMap.colorSensor.get(RobotMap.COLOR_SENSOR);
+        servo = hwMap.servo.get(RobotMap.COLOR_SENSOR_SERVO);
     }
 
     public void setInitPosition() {
-        this.servo.setPosition(INIT_POSITION);
+        servo.setPosition(INIT_POSITION);
     }
 
     public void goDown() {
-        this.servo.setPosition(DOWN_POSITION);
+        servo.setPosition(DOWN_POSITION);
     }
 
     private int getRed() {

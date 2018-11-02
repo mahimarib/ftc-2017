@@ -39,11 +39,11 @@ public class ArmSystem extends Mechanism {
     @Override
     public void init(HardwareMap hwMap) {
         // mapping the hardware members
-        this.leftArmServo = hwMap.servo.get(RobotMap.ARM_LEFT_SERVO);
-        this.rightArmServo = hwMap.servo.get(RobotMap.ARM_RIGHT_SERVO);
-        this.armMotor = hwMap.dcMotor.get(RobotMap.ARM_MOTOR);
+        leftArmServo = hwMap.servo.get(RobotMap.ARM_LEFT_SERVO);
+        rightArmServo = hwMap.servo.get(RobotMap.ARM_RIGHT_SERVO);
+        armMotor = hwMap.dcMotor.get(RobotMap.ARM_MOTOR);
         // reversing the right servo to be symmetric to the left servo
-        this.rightArmServo.setDirection(Servo.Direction.REVERSE);
+        rightArmServo.setDirection(Servo.Direction.REVERSE);
         // setting the range of the servos, since it opens too wide
         leftArmServo.scaleRange(0, OPEN_POSITION);
         // the right arm servo is set differently since reversing it makes
@@ -56,21 +56,21 @@ public class ArmSystem extends Mechanism {
      * Moves the arm up.
      */
     public void goUp() {
-        this.armMotor.setPower(1.0);
+        armMotor.setPower(1.0);
     }
 
     /**
      * Moves the arm down.
      */
     public void goDown() {
-        this.armMotor.setPower(-1.0);
+        armMotor.setPower(-1.0);
     }
 
     /**
      * Stops the arm in place.
      */
     public void stopArmMotor() {
-        this.armMotor.setPower(0.0);
+        armMotor.setPower(0.0);
     }
 
     /**
@@ -81,8 +81,8 @@ public class ArmSystem extends Mechanism {
      *                 in the range [0.0, 1.0]
      */
     public void triggerArmServo(double position) {
-        this.leftArmServo.setPosition(position);
-        this.rightArmServo.setPosition(position);
+        leftArmServo.setPosition(position);
+        rightArmServo.setPosition(position);
     }
 
     /**
@@ -91,7 +91,7 @@ public class ArmSystem extends Mechanism {
      * @return left arm servo position
      */
     public double getLeftServoPosition() {
-        return this.leftArmServo.getPosition();
+        return leftArmServo.getPosition();
     }
 
     /**
@@ -100,6 +100,6 @@ public class ArmSystem extends Mechanism {
      * @return right arm servo position.
      */
     public double getRightServoPosition() {
-        return this.rightArmServo.getPosition();
+        return rightArmServo.getPosition();
     }
 }
