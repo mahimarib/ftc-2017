@@ -10,9 +10,9 @@ import org.firstinspires.ftc.teamcode.systems.Mechanism;
 import static org.firstinspires.ftc.teamcode.systems.MecanumDriveSystem.Direction;
 
 public class Robot extends Mechanism {
-    public final MecanumDriveSystem driveSystem;
-    public final ArmSystem armSystem;
-    public final ColorSensorSystem colorSensorSystem;
+    public MecanumDriveSystem driveSystem;
+    public ArmSystem armSystem;
+    public ColorSensorSystem colorSensorSystem;
 
     public Robot(LinearOpMode opMode) {
         this.opMode = opMode;
