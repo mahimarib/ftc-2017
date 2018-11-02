@@ -6,6 +6,11 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 import org.firstinspires.ftc.teamcode.RobotMap;
 
+/**
+ * The ArmSystem is the class that is used to define all of the hardware that is
+ * used for the robot's arm, the ArmSystem must be instantiated then
+ * initialized in the Robot class to use.
+ */
 public class ArmSystem extends Mechanism {
     /* Hardware members */
     private Servo leftArmServo;
