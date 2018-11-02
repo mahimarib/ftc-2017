@@ -4,6 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
+import org.firstinspires.ftc.teamcode.RobotMap;
 
 /**
  * Created by Mahim on 1/9/18.
@@ -23,9 +24,9 @@ public class ArmSystem extends Mechanism {
 
     @Override
     public void init(HardwareMap hwMap) {
-        this.leftArmServo = hwMap.get(Servo.class, "left arm servo");
-        this.rightArmServo = hwMap.get(Servo.class, "right arm servo");
-        this.armMotor = hwMap.get(DcMotor.class, "arm motor");
+        this.leftArmServo = hwMap.servo.get(RobotMap.ARM_LEFT_SERVO);
+        this.rightArmServo = hwMap.servo.get(RobotMap.ARM_RIGHT_SERVO);
+        this.armMotor = hwMap.dcMotor.get(RobotMap.ARM_MOTOR);
         this.rightArmServo.setDirection(Servo.Direction.REVERSE);
         leftArmServo.scaleRange(0, OPEN_POSITION);
         rightArmServo.scaleRange(1 - OPEN_POSITION, 1);

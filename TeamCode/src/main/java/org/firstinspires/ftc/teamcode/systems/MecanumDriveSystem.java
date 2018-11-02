@@ -9,6 +9,7 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.util.Range;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.robotcore.external.navigation.*;
+import org.firstinspires.ftc.teamcode.RobotMap;
 
 /**
  * Created by Mahim on 12/4/2017.
@@ -29,10 +30,11 @@ public class MecanumDriveSystem extends Mechanism {
 
     @Override
     public void init(HardwareMap hwMap) {
-        this.frontLeftMotor = hwMap.get(DcMotor.class, "front left motor");
-        this.rearLeftMotor = hwMap.get(DcMotor.class, "rear left motor");
-        this.frontRightMotor = hwMap.get(DcMotor.class, "front right motor");
-        this.rearRightMotor = hwMap.get(DcMotor.class, "rear right motor");
+        this.frontLeftMotor = hwMap.dcMotor.get(RobotMap.FRONT_LEFT_MOTOR);
+        this.rearLeftMotor = hwMap.dcMotor.get(RobotMap.REAR_LEFT_MOTOR);
+        this.frontRightMotor = hwMap.dcMotor.get(RobotMap.FRONT_RIGHT_MOTOR);
+        this.rearRightMotor = hwMap.dcMotor.get(RobotMap.REAR_RIGHT_MOTOR);
+
         this.rearRightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
         this.frontRightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
 
@@ -45,12 +47,12 @@ public class MecanumDriveSystem extends Mechanism {
         parameters.angleUnit = BNO055IMU.AngleUnit.DEGREES;
         parameters.accelUnit = BNO055IMU.AccelUnit.METERS_PERSEC_PERSEC;
         parameters.calibrationDataFile = "BNO055IMUCalibration.json";
-        // see the calibration sample opmode
         parameters.loggingEnabled = true;
         parameters.loggingTag = "IMU";
         parameters.accelerationIntegrationAlgorithm
                 = new JustLoggingAccelerationIntegrator();
-        imu = hwMap.get(BNO055IMU.class, "imu");
+
+        imu = hwMap.get(BNO055IMU.class, RobotMap.GYRO);
         imu.initialize(parameters);
         imu.startAccelerationIntegration(new Position(), new Velocity(), 1000);
     }

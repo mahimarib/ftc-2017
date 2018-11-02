@@ -4,6 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
+import org.firstinspires.ftc.teamcode.RobotMap;
 
 /**
  * Created by Mahim on 1/12/2018.
@@ -23,8 +24,8 @@ public class ColorSensorSystem extends Mechanism {
 
     @Override
     public void init(HardwareMap hwMap) {
-        this.colorSensor = hwMap.colorSensor.get("color sensor");
-        this.servo = hwMap.get(Servo.class, "jewel arm servo");
+        this.colorSensor = hwMap.colorSensor.get(RobotMap.COLOR_SENSOR);
+        this.servo = hwMap.servo.get(RobotMap.COLOR_SENSOR_SERVO);
     }
 
     public void setInitPosition() {
