@@ -11,10 +11,6 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.robotcore.external.navigation.*;
 import org.firstinspires.ftc.teamcode.RobotMap;
 
-/**
- * Created by Mahim on 12/4/2017.
- */
-
 public class MecanumDriveSystem extends Mechanism {
     private DcMotor frontLeftMotor;
     private DcMotor rearLeftMotor;

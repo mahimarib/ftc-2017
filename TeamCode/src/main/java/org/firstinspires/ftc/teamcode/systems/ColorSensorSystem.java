@@ -6,10 +6,6 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 import org.firstinspires.ftc.teamcode.RobotMap;
 
-/**
- * Created by Mahim on 1/12/2018.
- */
-
 public class ColorSensorSystem extends Mechanism {
     private ColorSensor colorSensor;
     private Servo servo;

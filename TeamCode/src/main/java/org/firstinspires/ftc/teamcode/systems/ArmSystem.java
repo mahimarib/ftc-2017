@@ -6,10 +6,6 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 import org.firstinspires.ftc.teamcode.RobotMap;
 
-/**
- * Created by Mahim on 1/9/18.
- */
-
 public class ArmSystem extends Mechanism {
     private Servo leftArmServo;
     private Servo rightArmServo;

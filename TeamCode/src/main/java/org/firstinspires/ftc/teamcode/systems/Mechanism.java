@@ -1,9 +1,5 @@
 package org.firstinspires.ftc.teamcode.systems;
 
-/**
- * Created by Mahim on 6/16/18.
- */
-
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
