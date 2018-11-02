@@ -9,7 +9,7 @@ import org.firstinspires.ftc.teamcode.RobotMap;
 /**
  * The ArmSystem is the class that is used to define all of the hardware that is
  * used for the robot's arm, the ArmSystem must be instantiated then
- * initialized in the Robot class to use.
+ * initialized before it can be used.
  */
 public class ArmSystem extends Mechanism {
     /* Hardware members */
@@ -37,7 +37,8 @@ public class ArmSystem extends Mechanism {
 
     /**
      * Maps the hardware members to the robot's HardwareMap, as well as
-     * initializing arm positions and its parameters.
+     * initializing arm positions as well as configuring the state of the
+     * hardware members before the robot is moving.
      *
      * @param hwMap robot's hardware map
      */
