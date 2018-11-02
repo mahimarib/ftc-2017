@@ -22,8 +22,8 @@ public class ParkingLeft extends LinearOpMode {
         initialize();
         waitForStart();
         runtime.reset();
-        robot.driveSystem.drive(0.5, 0.5);
+        robot.drivetrain.drive(0.5, 0.5);
         sleep(2000);
-        robot.driveSystem.stop();
+        robot.drivetrain.stop();
     }
 }

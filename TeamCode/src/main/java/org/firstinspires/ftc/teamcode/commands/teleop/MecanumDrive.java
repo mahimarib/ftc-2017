@@ -22,11 +22,13 @@ public class MecanumDrive extends OpMode {
     public void init_loop() {}
 
     @Override
-    public void start() { runtime.reset(); }
+    public void start() {
+        runtime.reset();
+    }
 
     @Override
     public void loop() {
-        robot.driveSystem.drive(
+        robot.drivetrain.drive(
                 gamepad1.left_stick_x, gamepad1.left_stick_y,
                 gamepad1.right_stick_x);
         robot.armSystem.triggerArmServo(gamepad2.right_trigger);
@@ -51,15 +53,15 @@ public class MecanumDrive extends OpMode {
     }
 
     private void telemetry() {
-        robot.driveSystem.getSpeed(telemetry);
+        robot.drivetrain.getSpeed(telemetry);
         telemetry.addData("left servo", robot.armSystem.getLeftServoPosition());
         telemetry.addData(
                 "right servo", robot.armSystem.getRightServoPosition());
-        telemetry.addData("angle", robot.driveSystem.getAngle());
+        telemetry.addData("angle", robot.drivetrain.getAngle());
     }
 
     @Override
     public void stop() {
-        robot.driveSystem.stop();
+        robot.drivetrain.stop();
     }
 }

@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import org.firstinspires.ftc.teamcode.Robot;
 
-import static org.firstinspires.ftc.teamcode.systems.DriveSystem.Direction;
+import static org.firstinspires.ftc.teamcode.systems.Drivetrain.Direction;
 
 /**
  * Created by Mahim on 1/12/2018.
@@ -25,10 +25,10 @@ public class RedTop extends LinearOpMode {
         waitForStart();
         runtime.reset();
         robot.knockDownBlueJewel();
-        robot.driveSystem.stop();
+        robot.drivetrain.stop();
         sleep(1000);
-        robot.driveSystem.drive(0.3, 0.5, Direction.FORWARD);
+        robot.drivetrain.drive(0.3, 0.5, Direction.FORWARD);
         sleep(1000);
-        robot.driveSystem.stop();
+        robot.drivetrain.stop();
     }
 }

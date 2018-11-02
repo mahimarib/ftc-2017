@@ -12,13 +12,13 @@ import org.firstinspires.ftc.robotcore.external.navigation.*;
 import org.firstinspires.ftc.teamcode.RobotMap;
 
 /**
- * The DriveSystem is the class that is used to define all the hardware for
- * the robot's drivetrain. The DriveSystem must be instantiated and then
+ * The Drivetrain is the class that is used to define all the hardware for
+ * the robot's drivetrain. The Drivetrain must be instantiated and then
  * initialized before it is used.
  * <p>
- * This DriveSystem is used for a mecanum drivetrain.
+ * This Drivetrain is used for a mecanum drivetrain.
  */
-public class DriveSystem extends Mechanism {
+public class Drivetrain extends Mechanism {
     /* Hardware members */
     private DcMotor frontLeftMotor;
     private DcMotor rearLeftMotor;
@@ -34,14 +34,14 @@ public class DriveSystem extends Mechanism {
      *
      * @param opMode LinearOpMode
      */
-    public DriveSystem(LinearOpMode opMode) {
+    public Drivetrain(LinearOpMode opMode) {
         this.opMode = opMode;
     }
 
     /**
-     * The default constructor for the DriveSystem.
+     * The default constructor for the Drivetrain.
      */
-    public DriveSystem() {}
+    public Drivetrain() {}
 
     /**
      * Maps the hardware members to the robot's HardwareMap, as well as
