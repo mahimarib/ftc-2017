@@ -5,10 +5,13 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import org.firstinspires.ftc.teamcode.Robot;
 
-import static org.firstinspires.ftc.teamcode.systems.MecanumDriveSystem.Direction;
+import static org.firstinspires.ftc.teamcode.systems.Drivetrain.Direction;
 
 /**
- * Created by Mahim on 1/13/2018.
+ * This Autonomous routine is when the robot is on the blue alliance and on
+ * the balancing scale that is furthest to the relic mat.
+ * <p>
+ * This routine knocks down the jewel and drives into the safe zone.
  */
 @Autonomous(name = "blue alliance top", group = "blue alliance")
 public class BlueTop extends LinearOpMode {
@@ -25,10 +28,10 @@ public class BlueTop extends LinearOpMode {
         waitForStart();
         runtime.reset();
         robot.knockDownRedJewel();
-        robot.driveSystem.stop();
+        robot.drivetrain.stop();
         sleep(1000);
-        robot.driveSystem.drive(0.5, 0.3, Direction.FORWARD);
+        robot.drivetrain.drive(0.5, 0.3, Direction.FORWARD);
         sleep(1000);
-        robot.driveSystem.stop();
+        robot.drivetrain.stop();
     }
 }

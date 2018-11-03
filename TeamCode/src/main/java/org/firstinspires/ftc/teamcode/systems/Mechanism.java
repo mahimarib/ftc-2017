@@ -1,9 +1,5 @@
 package org.firstinspires.ftc.teamcode.systems;
 
-/**
- * Created by Mahim on 6/16/18.
- */
-
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
@@ -20,7 +16,7 @@ public abstract class Mechanism {
     /**
      * OpMode context for a Mechanism class.
      */
-    protected LinearOpMode linearOpMode;
+    protected LinearOpMode opMode;
 
     /**
      * Initializes hardware on the robot. Gets and stores references to the
