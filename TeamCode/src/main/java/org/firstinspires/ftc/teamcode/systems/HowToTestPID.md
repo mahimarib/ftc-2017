@@ -43,8 +43,8 @@ using different coefficient values. So you'll just be editing 3 lines of code.
 
 ## Picking Right Values
 
-In the file [`MecanumDriveSystem.java`](MecanumDriveSystem.java#L114-L116) lines
-114 - 116 you have 3 PID coefficients:
+In the file [`Drivetrain.java`](Drivetrain.java#L182-L184) lines
+182 - 184 you have 3 PID coefficients:
 
 ```java
     double kP = 0.03;
