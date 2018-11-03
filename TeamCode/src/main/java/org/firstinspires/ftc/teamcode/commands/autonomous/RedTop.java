@@ -8,7 +8,10 @@ import org.firstinspires.ftc.teamcode.Robot;
 import static org.firstinspires.ftc.teamcode.systems.Drivetrain.Direction;
 
 /**
- * Created by Mahim on 1/12/2018.
+ * This Autonomous routine is when the robot is on the red alliance and on
+ * the balancing scale that is furthest to the relic mat.
+ * <p>
+ * This routine knocks down the jewel and drives into the safe zone.
  */
 @Autonomous(name = "red alliance top", group = "red alliance")
 public class RedTop extends LinearOpMode {
