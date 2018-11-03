@@ -17,6 +17,7 @@ public class TurnTest extends LinearOpMode {
     public void runOpMode() throws InterruptedException {
         robot.init(hardwareMap);
         waitForStart();
+        runtime.reset();
         robot.drivetrain.turn(90);
         robot.drivetrain.stop();
     }
