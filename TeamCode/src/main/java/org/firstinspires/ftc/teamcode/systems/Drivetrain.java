@@ -170,10 +170,10 @@ public class Drivetrain extends Mechanism {
      * @param targetAngle target angle in degrees
      */
     public void turn(double targetAngle) {
-        // setting the target angle based on the current orientation
-        targetAngle += getAngle();
         // scaling down the angle
         targetAngle %= 360;
+        // setting the target angle based on the current orientation
+        targetAngle += getAngle();
 
         double integral = 0;
         double prevError = 0;
