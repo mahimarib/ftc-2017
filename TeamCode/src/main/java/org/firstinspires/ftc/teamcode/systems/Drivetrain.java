@@ -12,9 +12,8 @@ import org.firstinspires.ftc.robotcore.external.navigation.*;
 import org.firstinspires.ftc.teamcode.RobotMap;
 
 /**
- * The Drivetrain is the class that is used to define all the hardware for
- * the robot's drivetrain. The Drivetrain must be instantiated and then
- * initialized before it is used.
+ * Drivetrain class is the representation of the robot's drivetrain. The
+ * Drivetrain must be instantiated and then initialized before it is used.
  * <p>
  * This Drivetrain is used for a mecanum drivetrain.
  */
@@ -93,8 +92,8 @@ public class Drivetrain extends Mechanism {
     /**
      * Used to set the drivetrain motors to drive as a mecanum drivetrain
      *
-     * @param x x component of the drive vector
-     * @param y y component of the drive vector
+     * @param x    x component of the drive vector
+     * @param y    y component of the drive vector
      * @param turn turn vector
      */
     public void drive(double x, double y, double turn) {
@@ -108,7 +107,7 @@ public class Drivetrain extends Mechanism {
      * Used to set the drivetrain motors to drive the robot in a
      * straightforward fashion
      *
-     * @param left speed for the left side of the drivetrain.
+     * @param left  speed for the left side of the drivetrain.
      * @param right speed for the right side of the drivetrain.
      */
     public void drive(double left, double right) {
@@ -133,9 +132,10 @@ public class Drivetrain extends Mechanism {
      * -1.0 will actually drive the robot forward, this method will solve the
      * confusion.
      *
-     * @param leftSpeed speed for the left side of the drivetrain.
+     * @param leftSpeed  speed for the left side of the drivetrain.
      * @param rightSpeed speed for the right side of the drivetrain.
-     * @param direction the direction the robot should move, forward or reverse.
+     * @param direction  the direction the robot should move, forward or
+     *                   reverse.
      */
     public void drive(
             double leftSpeed, double rightSpeed, Direction direction) {

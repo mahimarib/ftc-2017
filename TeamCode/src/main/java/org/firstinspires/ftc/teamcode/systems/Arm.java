@@ -7,9 +7,8 @@ import com.qualcomm.robotcore.hardware.Servo;
 import org.firstinspires.ftc.teamcode.RobotMap;
 
 /**
- * The Arm is the class that is used to define all of the hardware that is
- * used for the robot's arm, the Arm must be instantiated then
- * initialized before it can be used.
+ * Arm class is the representation of the robot's arm, the Arm must be
+ * instantiated then initialized before it can be used.
  */
 public class Arm extends Mechanism {
     /* Hardware members */
