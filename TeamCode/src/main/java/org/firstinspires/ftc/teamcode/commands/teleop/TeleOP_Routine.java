@@ -8,8 +8,8 @@ import org.firstinspires.ftc.teamcode.Robot;
 /**
  * Created by Mahim on 1/3/2018.
  */
-@TeleOp(name = "mecanum drive")
-public class MecanumDrive extends OpMode {
+@TeleOp(name = "TeleOP")
+public class TeleOP_Routine extends OpMode {
     private Robot robot = new Robot();
     private ElapsedTime runtime = new ElapsedTime();
 
