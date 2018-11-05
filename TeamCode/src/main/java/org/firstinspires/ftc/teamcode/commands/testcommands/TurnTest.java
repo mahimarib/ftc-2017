@@ -1,24 +1,20 @@
 package org.firstinspires.ftc.teamcode.commands.testcommands;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.util.ElapsedTime;
-import org.firstinspires.ftc.teamcode.Robot;
+import org.firstinspires.ftc.teamcode.commands.CustomOpMode;
 
 /**
  * This opMode is used to test the turn command of the drivetrain.
  */
-@Autonomous(name = "turn test", group = "test")
-public class TurnTest extends LinearOpMode {
-    private Robot robot = new Robot(this);
-    private ElapsedTime runtime = new ElapsedTime();
+@Autonomous(name = "turn test", group = "testing")
+public class TurnTest extends CustomOpMode {
+    @Override
+    public void initialize() {
+        robot.init(hardwareMap);
+    }
 
     @Override
-    public void runOpMode() throws InterruptedException {
-        robot.init(hardwareMap);
-        waitForStart();
-        runtime.reset();
+    public void execute() {
         robot.drivetrain.turn(90);
-        robot.drivetrain.stop();
     }
 }
