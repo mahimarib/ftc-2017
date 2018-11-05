@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import org.firstinspires.ftc.teamcode.Robot;
 
 /**
- * CustomOpMode is an abstract class that all autonomous routines. It
+ * CustomOpMode is an abstract class that all autonomous routines extends. It
  * contains methods and/or instance variables that is common for all
  * autonomous routines.
  */
