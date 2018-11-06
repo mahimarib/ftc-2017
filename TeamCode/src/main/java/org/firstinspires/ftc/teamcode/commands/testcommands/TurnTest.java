@@ -17,4 +17,9 @@ public class TurnTest extends CustomOpMode {
     public void execute() {
         robot.drivetrain.turn(90);
     }
+
+    @Override
+    protected boolean isFinished() {
+        return true;
+    }
 }

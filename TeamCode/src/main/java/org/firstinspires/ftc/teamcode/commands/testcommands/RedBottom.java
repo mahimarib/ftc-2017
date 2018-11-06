@@ -20,4 +20,9 @@ public class RedBottom extends CustomOpMode {
         sleep(1000);
         robot.drivetrain.stop();
     }
+
+    @Override
+    public boolean isFinished() {
+        return true;
+    }
 }
