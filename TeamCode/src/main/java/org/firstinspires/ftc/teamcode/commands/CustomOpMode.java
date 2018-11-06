@@ -5,9 +5,8 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import org.firstinspires.ftc.teamcode.Robot;
 
 /**
- * CustomOpMode is an abstract class that all autonomous routines extends. It
- * contains methods and/or instance variables that is common for all
- * autonomous routines.
+ * CustomOpMode is an abstract class that all routines extends. It
+ * contains methods and/or instance variables that is common for all routines.
  */
 public abstract class CustomOpMode extends LinearOpMode {
     private ElapsedTime runtime = new ElapsedTime();
@@ -17,18 +16,30 @@ public abstract class CustomOpMode extends LinearOpMode {
      * Runs actions that are needed before the match starts. Such as
      * initializing the robot.
      */
-    public abstract void initialize();
+    protected abstract void initialize();
 
     /**
      * Runs actions that are needed during the match.
      */
-    public abstract void execute();
+    protected abstract void execute();
+
+    /**
+     * Once this condition is met, the loop stops
+     *
+     * @return if the actions is finished.
+     */
+    protected abstract boolean isFinished();
 
     @Override
     public void runOpMode() {
         initialize();
         waitForStart();
         runtime.reset();
-        execute();
+        while (opModeIsActive()) {
+            execute();
+            if (isFinished()) {
+                break;
+            }
+        }
     }
 }
