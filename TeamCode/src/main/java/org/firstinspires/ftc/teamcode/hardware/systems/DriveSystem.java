@@ -7,13 +7,8 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.util.Range;
-
 import org.firstinspires.ftc.robotcore.external.Telemetry;
-import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
-import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
-import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
-import org.firstinspires.ftc.robotcore.external.navigation.Position;
-import org.firstinspires.ftc.robotcore.external.navigation.Velocity;
+import org.firstinspires.ftc.robotcore.external.navigation.*;
 import org.firstinspires.ftc.teamcode.hardware.systems.template.Mechanism;
 
 /**
@@ -21,16 +16,20 @@ import org.firstinspires.ftc.teamcode.hardware.systems.template.Mechanism;
  */
 
 public class DriveSystem extends Mechanism {
-    private DcMotor   frontLeftMotor;
-    private DcMotor   rearLeftMotor;
-    private DcMotor   frontRightMotor;
-    private DcMotor   rearRightMotor;
+    private DcMotor frontLeftMotor;
+    private DcMotor rearLeftMotor;
+    private DcMotor frontRightMotor;
+    private DcMotor rearRightMotor;
     private BNO055IMU imu;
 
-    private static final double     COUNTS_PER_MOTOR_REV    = 1440 ;    // eg: TETRIX Motor Encoder
-    private static final double     DRIVE_GEAR_REDUCTION    = 2.0 ;     // This is < 1.0 if geared UP
-    private static final double     WHEEL_DIAMETER_INCHES   = 4.0 ;     // For figuring circumference
-    private static final double     COUNTS_PER_INCH         = (COUNTS_PER_MOTOR_REV * DRIVE_GEAR_REDUCTION) /
+    private static final double COUNTS_PER_MOTOR_REV = 1440;
+    // eg: TETRIX Motor Encoder
+    private static final double DRIVE_GEAR_REDUCTION = 2.0;
+    // This is < 1.0 if geared UP
+    private static final double WHEEL_DIAMETER_INCHES = 4.0;
+    // For figuring circumference
+    private static final double COUNTS_PER_INCH =
+            (COUNTS_PER_MOTOR_REV * DRIVE_GEAR_REDUCTION) /
             (WHEEL_DIAMETER_INCHES * 3.1415);
 
     public DriveSystem() {}
@@ -41,10 +40,10 @@ public class DriveSystem extends Mechanism {
 
     @Override
     public void init(HardwareMap hwMap) {
-        frontLeftMotor  = hwMap.get(DcMotor.class, "front left motor");
-        rearLeftMotor   = hwMap.get(DcMotor.class, "rear left motor");
+        frontLeftMotor = hwMap.get(DcMotor.class, "front left motor");
+        rearLeftMotor = hwMap.get(DcMotor.class, "rear left motor");
         frontRightMotor = hwMap.get(DcMotor.class, "front right motor");
-        rearRightMotor  = hwMap.get(DcMotor.class, "rear right motor");
+        rearRightMotor = hwMap.get(DcMotor.class, "rear right motor");
 
         rearRightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
         frontRightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -55,12 +54,14 @@ public class DriveSystem extends Mechanism {
         rearRightMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
-        parameters.angleUnit           = BNO055IMU.AngleUnit.DEGREES;
-        parameters.accelUnit           = BNO055IMU.AccelUnit.METERS_PERSEC_PERSEC;
-        parameters.calibrationDataFile = "BNO055IMUCalibration.json"; // see the calibration sample opmode
-        parameters.loggingEnabled      = true;
-        parameters.loggingTag          = "IMU";
-        parameters.accelerationIntegrationAlgorithm = new JustLoggingAccelerationIntegrator();
+        parameters.angleUnit = BNO055IMU.AngleUnit.DEGREES;
+        parameters.accelUnit = BNO055IMU.AccelUnit.METERS_PERSEC_PERSEC;
+        parameters.calibrationDataFile
+                = "BNO055IMUCalibration.json";
+        parameters.loggingEnabled = true;
+        parameters.loggingTag = "IMU";
+        parameters.accelerationIntegrationAlgorithm
+                = new JustLoggingAccelerationIntegrator();
 
         imu = hwMap.get(BNO055IMU.class, "imu");
         imu.initialize(parameters);
@@ -94,8 +95,10 @@ public class DriveSystem extends Mechanism {
     }
 
     public double getAngle() {
-        return imu.getAngularOrientation(AxesReference.INTRINSIC,
-                AxesOrder.ZYX, AngleUnit.DEGREES).firstAngle;
+        return imu.getAngularOrientation(
+                AxesReference.INTRINSIC,
+                AxesOrder.ZYX,
+                AngleUnit.DEGREES).firstAngle;
     }
 
     /**
@@ -117,7 +120,8 @@ public class DriveSystem extends Mechanism {
 
         double maxSpeed = 1.0;
 
-        while (opMode.opModeIsActive() && Math.abs(getAngleError(targetAngle)) > 1.5) {
+        while (opMode.opModeIsActive() && Math.abs(getAngleError(targetAngle)) >
+                                          1.5) {
             double error = getAngleError(targetAngle);
 
             integral += error;
@@ -127,13 +131,15 @@ public class DriveSystem extends Mechanism {
             double kI_output = kI * integral;
             double kD_output = kD * derivative;
 
-            double output = Range.clip(kP_output + kI_output - kD_output, -maxSpeed, maxSpeed);
+            double output = Range.clip(
+                    kP_output + kI_output - kD_output, -maxSpeed, maxSpeed);
 
             prevError = error;
 
             drive(-output, output);
 
-            opMode.telemetry.addData("Heading: ", "%.2f : %.2f", targetAngle, getAngle());
+            opMode.telemetry.addData(
+                    "Heading: ", "%.2f : %.2f", targetAngle, getAngle());
             opMode.telemetry.addData("Velocity: ", "%.2f", output);
             getSpeed(opMode.telemetry);
             opMode.telemetry.update();
@@ -144,12 +150,15 @@ public class DriveSystem extends Mechanism {
     /**
      * Drives to given distance
      *
-     * @param leftDistanceInInches inches the left side drives
+     * @param leftDistanceInInches  inches the left side drives
      * @param rightDistanceInInches inches the right side drives
      */
-    public void driveDistance(double leftDistanceInInches, double rightDistanceInInches) {
-        double leftTargetPos = (leftDistanceInInches * COUNTS_PER_INCH) + getLeftEncoderAvg();
-        double rightTargetPos = (rightDistanceInInches * COUNTS_PER_INCH) + getRightEncoderAvg();
+    public void driveDistance(
+            double leftDistanceInInches, double rightDistanceInInches) {
+        double leftTargetPos = leftDistanceInInches * COUNTS_PER_INCH +
+                               getLeftEncoderAvg();
+        double rightTargetPos = rightDistanceInInches * COUNTS_PER_INCH +
+                                getRightEncoderAvg();
 
         double leftIntegral = 0;
         double leftPrevError = 0;
@@ -163,8 +172,10 @@ public class DriveSystem extends Mechanism {
 
         double maxSpeed = 1.0;
 
-        while (opMode.opModeIsActive() && (Math.abs(getLeftDistError(leftTargetPos)) > 200
-                && Math.abs(getRightDistError(rightTargetPos)) > 200)) {
+        while (opMode.opModeIsActive() && (Math.abs(
+                getLeftDistError(leftTargetPos)) > 200
+                                           && Math.abs(
+                getRightDistError(rightTargetPos)) > 200)) {
             double leftError = getLeftDistError(leftTargetPos);
             double rightError = getRightDistError(rightTargetPos);
 
@@ -182,8 +193,12 @@ public class DriveSystem extends Mechanism {
             double rightI_output = kI * rightIntegral;
             double rightD_output = kD * rightDerivative;
 
-            double leftOutput = Range.clip(leftP_output + leftI_output - leftD_output, -maxSpeed, maxSpeed);
-            double rightOutput = Range.clip(rightP_output + rightI_output - rightD_output, -maxSpeed, maxSpeed);
+            double leftOutput = Range.clip(
+                    leftP_output + leftI_output - leftD_output, -maxSpeed,
+                    maxSpeed);
+            double rightOutput = Range.clip(
+                    rightP_output + rightI_output - rightD_output, -maxSpeed,
+                    maxSpeed);
 
             leftPrevError = leftError;
             rightPrevError = rightError;
@@ -207,11 +222,13 @@ public class DriveSystem extends Mechanism {
     }
 
     public double getLeftEncoderAvg() {
-        return (double)(frontLeftMotor.getCurrentPosition() + rearLeftMotor.getCurrentPosition()) / 2;
+        return (double) (frontLeftMotor.getCurrentPosition() +
+                         rearLeftMotor.getCurrentPosition()) / 2;
     }
 
     public double getRightEncoderAvg() {
-        return (double)(frontRightMotor.getCurrentPosition() + rearRightMotor.getCurrentPosition()) / 2;
+        return (double) (frontRightMotor.getCurrentPosition() +
+                         rearRightMotor.getCurrentPosition()) / 2;
     }
 
     // Get the difference in the target angle and the current heading
@@ -224,7 +241,7 @@ public class DriveSystem extends Mechanism {
     }
 
     private double getRightDistError(double targetPos) {
-        return  targetPos - getRightEncoderAvg();
+        return targetPos - getRightEncoderAvg();
     }
 
     public void getSpeed(Telemetry telemetry) {
@@ -235,9 +252,13 @@ public class DriveSystem extends Mechanism {
     }
 
     public void getEncoderTicks(Telemetry telemetry) {
-        telemetry.addData("front left encoder", frontLeftMotor.getCurrentPosition());
-        telemetry.addData("rear left encoder", rearLeftMotor.getCurrentPosition());
-        telemetry.addData("front right encoder", frontRightMotor.getCurrentPosition());
-        telemetry.addData("rear right encoder", rearRightMotor.getCurrentPosition());
+        telemetry.addData(
+                "front left encoder", frontLeftMotor.getCurrentPosition());
+        telemetry.addData(
+                "rear left encoder", rearLeftMotor.getCurrentPosition());
+        telemetry.addData(
+                "front right encoder", frontRightMotor.getCurrentPosition());
+        telemetry.addData(
+                "rear right encoder", rearRightMotor.getCurrentPosition());
     }
 }
