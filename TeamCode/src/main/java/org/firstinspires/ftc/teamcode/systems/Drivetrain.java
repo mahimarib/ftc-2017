@@ -11,6 +11,8 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.robotcore.external.navigation.*;
 import org.firstinspires.ftc.teamcode.RobotMap;
 
+import java.util.Arrays;
+
 /**
  * Drivetrain class is the representation of the robot's drivetrain. The
  * Drivetrain must be instantiated and then initialized before it is used.
@@ -23,6 +25,7 @@ public class Drivetrain extends Mechanism {
     private DcMotor rearLeftMotor;
     private DcMotor frontRightMotor;
     private DcMotor rearRightMotor;
+    private DcMotor[] motors;
     private BNO055IMU imu;
 
     /**
@@ -56,16 +59,17 @@ public class Drivetrain extends Mechanism {
         rearLeftMotor = hwMap.dcMotor.get(RobotMap.REAR_LEFT_MOTOR);
         frontRightMotor = hwMap.dcMotor.get(RobotMap.FRONT_RIGHT_MOTOR);
         rearRightMotor = hwMap.dcMotor.get(RobotMap.REAR_RIGHT_MOTOR);
+
+        motors = new DcMotor[] {frontLeftMotor, rearLeftMotor,
+                                frontRightMotor, rearRightMotor};
         // reversing the right side of the drivetrain so all the motors turn
         // the same direction
         rearRightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
         frontRightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
         // setting it to brake mode so the motors uses force to stop itself
         // from turning freely when the power is set to zero.
-        frontLeftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        rearLeftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        frontRightMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        rearRightMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        Arrays.stream(motors).forEach(x -> x.setZeroPowerBehavior(
+                DcMotor.ZeroPowerBehavior.BRAKE));
         // setting up the parameters for the built in gyroscope
         BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
         parameters.angleUnit = BNO055IMU.AngleUnit.DEGREES;
@@ -121,10 +125,7 @@ public class Drivetrain extends Mechanism {
      * stops all of the motors of the drivetrain
      */
     public void stop() {
-        frontLeftMotor.setPower(0.0);
-        rearLeftMotor.setPower(0.0);
-        frontRightMotor.setPower(0.0);
-        rearRightMotor.setPower(0.0);
+        Arrays.stream(motors).forEach(x -> x.setPower(0.0));
     }
 
     /**
